@@ -1,16 +1,19 @@
-* {
+ * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: poppins, sans-serif;
     text-decoration: none;
-}
+} 
 
-body {
-    background-color: #222;
-}
+ body {
+    background: url(../images/cyberpunk.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+} 
 
-.card-container {
+ .card-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -58,7 +61,7 @@ body {
     margin-top: 16px;
     color: #fff;
 }
-
+ 
 
 
 
