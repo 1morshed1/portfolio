@@ -4,13 +4,13 @@ Md. Morshed Jamal's Personal Portfolio Website
 This is a modern, highly responsive personal portfolio website designed for Md. Morshed Jamal, a Software Engineer and Machine Learning Engineer. It serves as a comprehensive online resume, showcasing his skills, experience, and projects with an emphasis on visual appeal, dynamic interactions, and a polished user experience. The website features a dark theme, subtle animations, and an intuitive navigation system.
 ✨ Features
 
-    Responsive Design: Optimized for seamless viewing across various devices (desktop, tablet, mobile).
+Responsive Design: Optimized for seamless viewing across various devices (desktop, tablet, mobile).
 
-    Dark Theme: A sleek and professional dark mode aesthetic with carefully chosen color palettes for enhanced visual appeal and readability.
+Dark Theme: A sleek and professional dark mode aesthetic with carefully chosen color palettes for enhanced visual appeal and readability.
 
-    Smooth Navigation: A sticky navigation bar that dynamically shrinks and changes appearance on scroll, providing smooth scrolling to different sections.
+Smooth Navigation: A sticky navigation bar that dynamically shrinks and changes appearance on scroll, providing smooth scrolling to different sections.
 
-    Interactive Elements:
+Interactive Elements:
 
         Card Hover Effects: Projects and skill cards feature pronounced lift, subtle 3D tilt, and a vibrant gradient border on hover.
 
@@ -18,7 +18,7 @@ This is a modern, highly responsive personal portfolio website designed for Md. 
 
         Icon Animations: Social media icons and skill emojis animate with a subtle bounce and scale on hover.
 
-    Dynamic Typography:
+Dynamic Typography:
 
         Custom Fonts: Utilizes 'Inter' for body text and 'Montserrat' for headings, creating a strong typographic hierarchy.
 
@@ -28,7 +28,7 @@ This is a modern, highly responsive personal portfolio website designed for Md. 
 
         Highlighted Keywords: Important terms within text sections are visually highlighted for emphasis.
 
-    Visual Details & Polish:
+Visual Details & Polish:
 
         Subtle Background Textures: Radial gradients are used to add depth to the overall background.
 
@@ -44,7 +44,7 @@ This is a modern, highly responsive personal portfolio website designed for Md. 
 
         Favicon: A custom favicon is included for browser tabs.
 
-    Detailed Sections:
+Detailed Sections:
 
         About Me: A comprehensive introduction to Md. Morshed Jamal's background and passion.
 
@@ -86,7 +86,7 @@ To view this portfolio website locally:
 
 You can easily customize this portfolio to suit your needs:
 
-    Content:
+Content:
 
         Edit the text within the <h1>, <p>, <li> tags in each section (#about, #experience, #skills, #projects, #contact) to reflect your own information.
 
@@ -96,7 +96,7 @@ You can easily customize this portfolio to suit your needs:
 
         Add more contact links in the Contact section by following the existing Markdown link format: [Link Text](URL).
 
-    Styling:
+Styling:
 
         Modify the Tailwind CSS classes directly in the HTML for quick style changes (e.g., bg-blue-800 to bg-purple-800).
 
@@ -104,7 +104,7 @@ You can easily customize this portfolio to suit your needs:
 
         Experiment with the .section-title::after, .card-hover, .btn-primary, and .social-icon-hover styles for different animation effects.
 
-    Sections:
+Sections:
 
         Add or remove entire sections as needed by copying or deleting the <section> blocks.
 
