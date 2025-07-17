@@ -1,86 +1,889 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morshed Fahim</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font awesome cdn font icon css -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-</head>
-<body>
-    <div class="hero-header">
-        <div class="wrapper">
-            <header>
-                <div class="logo">
-                    <!-- <i class="fa-solid fa-a"></i> -->
-                    <div class="logo-text">Morshed Jamal</div>
-                </div>
-                <nav>
-                    <div class="togglebtn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <ul class="navlinks">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="pages/skills.html">Skills</a></li>
-                        <li><a href="pages/experience.html">Experience</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Other</a></li>
-                        <li><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div class="container">
-                <div class="hero-pic">
-                    <img src="images/untitled.jpg" alt="profile pic">
-                </div>
-                <div class="hero-text">
-                    <h5>Hi I'm <span class="input">Software Developer</span></h5>
-                   
-                    <h1>Md. Morshed Jamal</h1>
-           
-                    <p>Aspiring Software Developer and Machine Learning Engineer with a strong foundation in Python, Java, and web technologies. 
-                        Passionate about building intelligent systems, with hands on experience in machine learning (scikit-learn, TensorFlow) and full stack development. 
-                        Skilled in data analysis, REST APIs, and cloud platforms like AWS. 
-                        Eager to apply problem solving skills and learn from real-world challenges in AI and software engineering.
-                    </p>
-                
-                    <div class="btn-group">
-                        <a href="docs/md_morshed_jamal_cv.docx" class="btn active">Download CV</a>
-                        <a href="#" class="btn">Contact</a>
-                    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Md. Morshed Jamal - Portfolio</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://placehold.co/32x32/121212/4299e1?text=MJ"
+      type="image/x-icon"
+    />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for body, Montserrat for headings -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #121212; /* Very dark background */
+        color: #e0e0e0; /* Light gray text for contrast */
+        scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        line-height: 1.6;
+        /* Subtle radial gradient for background texture */
+        background-image: radial-gradient(
+            at 50% 0%,
+            rgba(26, 32, 44, 0.3) 0%,
+            transparent 70%
+          ),
+          radial-gradient(at 0% 100%, rgba(26, 32, 44, 0.3) 0%, transparent 70%);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        position: relative; /* For vignette */
+        overflow-x: hidden; /* Prevent horizontal scroll from animations */
+      }
 
-                    <div class="social">
-                        <a href="https://www.linkedin.com/in/morshed-jamal-a2ab66170/"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/1morshed1"><i class="fa-brands fa-github"></i></a>
-                        <a href="mailto:morshedfahim87@gmail.com"><i class="fa-brands fa-google"></i></a>
-                    </div>
+      /* Vignette Effect */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at center,
+          transparent 0%,
+          rgba(0, 0, 0, 0.3) 80%
+        );
+        z-index: 999; /* Ensure it's on top of content but behind fixed nav */
+      }
 
-                </div>
-            </div>
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1f2937; /* Darker track */
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #4299e1; /* Blue thumb */
+        border-radius: 10px;
+        border: 2px solid #1f2937; /* Border around thumb */
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #3182ce; /* Darker blue on hover */
+      }
+
+      /* Section Title Styling */
+      .section-title {
+        font-family: "Montserrat", sans-serif; /* Custom font for titles */
+        position: relative;
+        display: inline-block;
+        padding-bottom: 8px;
+        color: #f0f0f0; /* Brighter title color */
+        font-weight: 800; /* Bolder weight */
+        letter-spacing: 0.08em; /* Increased letter spacing */
+        text-transform: uppercase; /* Uppercase for impact */
+      }
+      .section-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50%;
+        height: 4px; /* Thicker underline */
+        background-color: #4299e1; /* Vibrant blue underline */
+        border-radius: 9999px;
+        transition: width 0.3s ease-in-out; /* Animation for underline */
+      }
+      .section-title:hover::after {
+        width: 100%; /* Expand underline on hover */
+      }
+
+      /* Custom hover effect for cards */
+      .card-hover {
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother cubic-bezier transition */
+        transform-style: preserve-3d; /* For 3D tilt */
+        position: relative;
+        z-index: 1; /* Ensure cards are above background effects */
+      }
+      .card-hover:hover {
+        transform: perspective(1000px) translateY(-12px) rotateX(2deg)
+          rotateY(1deg) scale(1.02); /* More pronounced lift, slight 3D tilt, and slight scale */
+        box-shadow: 0 28px 50px -18px rgba(0, 0, 0, 0.7),
+          0 12px 25px -12px rgba(0, 0, 0, 0.5); /* Deeper, more diffused shadow */
+        border-color: #4299e1; /* Blue border on hover */
+        background-color: #2a3547; /* Slightly lighter on hover */
+      }
+      .bg-card {
+        background-color: #1f2937; /* Darker card background */
+        color: #e0e0e0; /* Light text on cards */
+        border: 1px solid #374151; /* Subtle border */
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
+      }
+      .bg-section-alt {
+        background-color: #1a202c; /* Slightly different dark background for alternating sections */
+      }
+      .text-gradient {
+        background-image: linear-gradient(to right, #63b3ed, #4299e1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      /* Button Styling */
+      .btn-primary {
+        background-color: #4299e1;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(66, 153, 225, 0.3); /* Initial subtle glow */
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary:hover {
+        background-color: #3182ce;
+        transform: translateY(-3px) scale(1.05); /* More pronounced lift and scale */
+        box-shadow: 0 8px 20px rgba(66, 153, 225, 0.6); /* Stronger glow on hover */
+      }
+      /* Pulse effect for buttons */
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: width 0.5s ease-out, height 0.5s ease-out,
+          opacity 0.5s ease-out;
+      }
+      .btn-primary:hover::before {
+        width: 200%;
+        height: 200%;
+        opacity: 1;
+      }
+
+      .btn-secondary {
+        background-color: #4a5568;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      .btn-secondary:hover {
+        background-color: #2d3748;
+        transform: translateY(-3px); /* More pronounced lift */
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Profile Picture Glow */
+      .profile-pic-glow:hover {
+        box-shadow: 0 0 25px rgba(66, 153, 225, 0.9),
+          0 0 50px rgba(66, 153, 225, 0.5); /* Stronger blue glow effect */
+      }
+
+      /* Text Shadow for Headings */
+      .text-shadow-light {
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7); /* More pronounced text shadow */
+      }
+
+      /* Section Divider Styling */
+      .divider {
+        height: 3px; /* Thicker divider */
+        background: linear-gradient(
+          to right,
+          transparent,
+          #4299e1,
+          transparent
+        );
+        width: 70%; /* Slightly narrower divider */
+        margin: 5rem auto; /* More margin */
+        border-radius: 9999px;
+        opacity: 0.7; /* Slightly transparent */
+        transition: all 0.5s ease-in-out;
+      }
+      .divider.active {
+        width: 85%; /* Expand on active/scroll */
+        opacity: 1;
+      }
+
+      /* Highlighted Text */
+      .highlight-text {
+        color: #63b3ed; /* Lighter blue for highlighted text */
+        font-weight: 600;
+        transition: color 0.3s ease-in-out;
+      }
+      .highlight-text:hover {
+        color: #90cdf4; /* Even lighter blue on hover */
+      }
+
+      /* Nav Link Hover Effect */
+      .nav-link-hover:hover {
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.7); /* Stronger text shadow on nav hover */
+      }
+
+      /* Icon Animations */
+      .social-icon-hover:hover {
+        animation: bounce-scale 0.5s ease-in-out forwards;
+      }
+      @keyframes bounce-scale {
+        0% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-5px) scale(1.1);
+        }
+        100% {
+          transform: translateY(0) scale(1.05);
+        }
+      }
+
+      /* Reveal Animations on Scroll */
+      .animated-section {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .animated-section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Typing Effect */
+      .typed-text-container {
+        min-height: 2.5em; /* Ensure space for typing text */
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .typed-text {
+        overflow: hidden; /* Ensures the content is not revealed until the animation */
+        border-right: 0.15em solid orange; /* The typwriter cursor */
+        white-space: nowrap; /* Keeps the content on a single line */
+        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+        letter-spacing: 0.15em; /* Adjust as needed */
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      /* The typing animation */
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* The typewriter cursor effect */
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: orange;
+        }
+      }
+
+      /* Scroll Progress Bar */
+      #progressBar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 5px; /* Height of the progress bar */
+        background-color: #4299e1; /* Blue color */
+        z-index: 1000; /* Ensure it's on top */
+        transition: width 0.1s linear; /* Smooth width transition */
+      }
+
+      /* Sticky Header */
+      .sticky-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(
+          18,
+          18,
+          18,
+          0.95
+        ); /* Darker, slightly transparent background */
+        padding: 1rem 0; /* Smaller padding when sticky */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s ease-in-out;
+        z-index: 990; /* Below progress bar, above content */
+      }
+      .sticky-header .container {
+        flex-direction: row !important; /* Keep horizontal */
+        justify-content: space-between;
+        align-items: center;
+      }
+      .sticky-header .text-5xl {
+        font-size: 2.5rem !important; /* Smaller title */
+      }
+      .sticky-header .text-2xl,
+      .sticky-header .text-md {
+        display: none !important; /* Hide tagline and description */
+      }
+      .sticky-header .flex-shrink-0 {
+        display: none !important; /* Hide profile pic */
+      }
+      .sticky-header .p-6 {
+        padding: 0.5rem 1.5rem !important; /* Adjust nav padding */
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <!-- Scroll Progress Bar -->
+    <div id="progressBar"></div>
+
+    <!-- Header Section -->
+    <header
+      id="mainHeader"
+      class="bg-gradient-to-r from-blue-800 to-indigo-900 text-white py-16 shadow-2xl relative overflow-hidden"
+    >
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between z-10 relative"
+      >
+        <div class="text-center md:text-left mb-6 md:mb-0">
+          <h1
+            class="text-6xl font-extrabold mb-3 leading-tight text-gradient text-shadow-light font-montserrat"
+          >
+            Md. Morshed Jamal
+          </h1>
+          <p class="text-2xl font-light text-blue-200 mb-4 tracking-wide">
+            <span class="typed-text-container"
+              ><span id="typed-tagline" class="typed-text"></span
+            ></span>
+          </p>
+          <p
+            class="text-lg mt-2 max-w-2xl mx-auto md:mx-0 text-gray-300 tracking-wide"
+          >
+            Passionate about using <span class="highlight-text">AI</span> to
+            address real-world issues, especially in
+            <span class="highlight-text">Computer Vision</span> and
+            <span class="highlight-text">Natural Language Processing</span>.
+            Always eager to learn and build impactful solutions.
+          </p>
         </div>
-    </div>
-    <!-- typed js for typing text effect -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.10/typed.min.js"></script>
+        <div class="flex-shrink-0 relative group">
+          <!-- Profile Picture with subtle hover effect and glow -->
+          <img
+            src="images/Untitled.jpg"
+            alt="Profile Picture"
+            class="rounded-full border-4 border-blue-400 shadow-xl w-40 h-40 object-cover transform transition-transform duration-300 group-hover:scale-105 profile-pic-glow"
+          />
+          <div
+            class="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-blue-600 transition-all duration-300"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Navigation Bar -->
+      <nav class="absolute top-0 right-0 p-6 z-20">
+        <ul
+          class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8"
+        >
+          <li>
+            <a
+              href="#about"
+              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
+              >About</a
+            >
+          </li>
+          <li>
+            <a
+              href="#experience"
+              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
+              >Experience</a
+            >
+          </li>
+          <li>
+            <a
+              href="#skills"
+              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
+              >Skills</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projects"
+              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
+              >Projects</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contact"
+              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+    >
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-10 text-center section-title">
+          About Me
+        </h2>
+        <div
+          class="text-xl leading-relaxed text-gray-300 text-center md:text-left tracking-wide"
+        >
+          <p class="mb-6">
+            I am a dedicated
+            <span class="highlight-text">Software Engineer</span> with a
+            profound interest in
+            <span class="highlight-text">Machine Learning & Deep Learning</span
+            >, holding a degree in Mechanical Engineering from BUET. My core
+            passion revolves around harnessing the power of
+            <span class="highlight-text">Artificial Intelligence</span> to
+            devise innovative solutions for complex real-world challenges, with
+            a particular emphasis on
+            <span class="highlight-text">Computer Vision</span> and
+            <span class="highlight-text">Natural Language Processing</span>.
+          </p>
+          <p>
+            My journey into the dynamic fields of software development and
+            machine learning is fueled by an insatiable curiosity and a strong
+            desire to build impactful and efficient systems. I am committed to
+            continuous learning and staying abreast of the latest advancements
+            in technology, always striving to contribute to cutting-edge
+            projects that make a tangible difference.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+    <!-- Section Divider -->
+
+    <!-- Experience Section -->
+    <section
+      id="experience"
+      class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+    >
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-10 text-center section-title">
+          Experience
+        </h2>
+        <div class="space-y-10">
+          <!-- Experience Item 1 -->
+          <div
+            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
+          >
+            <h3
+              class="text-3xl font-semibold mb-3 text-blue-400 font-montserrat"
+            >
+              Member, Software Sub Team
+            </h3>
+            <p class="text-xl text-gray-200 mb-2">Team Interplaneter, BUET</p>
+            <p class="text-md text-gray-400 mb-5">January 2029 - March 2020</p>
+            <ul class="list-disc list-inside text-gray-300 text-lg space-y-3">
+              <li>
+                Developed robust object and ArUco marker detection systems using
+                Python and OpenCV.
+              </li>
+              <li>
+                Engineered a user-friendly PyQt5 GUI interface for seamless
+                control of the Mars rover system.
+              </li>
+              <li>
+                Successfully integrated complex control systems utilizing
+                Raspberry Pi and NVIDIA Jetson Xavier NX.
+              </li>
+              <li>
+                Performed detailed simulations of autonomous navigation and
+                advanced robotic arm control (6 DOF) within ROS (Rviz, Gazebo)
+                environments.
+              </li>
+            </ul>
+          </div>
+          <!-- Experience Item 2 -->
+          <div
+            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
+          >
+            <h3
+              class="text-3xl font-semibold mb-3 text-blue-400 font-montserrat"
+            >
+              Industrial Trainee
+            </h3>
+            <p class="text-xl text-gray-200 mb-2">Renata PLC</p>
+            <p class="text-md text-gray-400 mb-5">Nov 2023 - Dec 2023</p>
+            <ul class="list-disc list-inside text-gray-300 text-lg space-y-3">
+              <li>
+                Gained comprehensive hands-on experience in industrial machine
+                and building maintenance protocols.
+              </li>
+              <li>
+                Acquired in-depth knowledge of engineering risk management
+                principles and industrial operational best practices.
+              </li>
+            </ul>
+          </div>
+          <!-- Add more experience items as needed -->
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+    <!-- Section Divider -->
+
+    <!-- Skills Section -->
+    <section
+      id="skills"
+      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+    >
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-10 text-center section-title">
+          Skills
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Programming Languages -->
+          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
+            <h3
+              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
+            >
+              Programming Languages
+            </h3>
+            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
+              <li>🐍 Python</li>
+              <li>☕ Java</li>
+              <li>⚙️ C++</li>
+            </ul>
+          </div>
+          <!-- Web Technologies -->
+          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
+            <h3
+              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
+            >
+              Web Technologies
+            </h3>
+            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
+              <li>📄 HTML5</li>
+              <li>🎨 CSS3</li>
+              <li>💡 JavaScript</li>
+            </ul>
+          </div>
+          <!-- ML & Data Science Libraries -->
+          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
+            <h3
+              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
+            >
+              ML & Data Science Libraries
+            </h3>
+            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
+              <li>📊 NumPy</li>
+              <li>📈 Scikit-Learn</li>
+              <li>🧠 Tensorflow</li>
+              <li>✨ Keras</li>
+              <li>🔥 Pytorch</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+    <!-- Section Divider -->
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+    >
+      <div class="container mx-auto">
+        <h2 class="text-4xl font-bold mb-10 text-center section-title">
+          Projects
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Example Project Card 1 -->
+          <div
+            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
+          >
+            <h3
+              class="text-2xl font-semibold mb-4 text-gray-100 font-montserrat"
+            >
+              🌐 Website Brochure Generator
+            </h3>
+            <p class="text-gray-300 mb-6 text-lg text-justify">
+              A Python tool 🐍 that smartly scrapes company websites 🌐 using
+              BeautifulSoup 🥣 and AI 🤖 to create concise markdown brochures
+              📝. It extracts key details like company overview 📋,
+              products/services 🛠️, and careers 💼, perfect for customers 😊,
+              investors 💰, and recruits 🙌.
+            </p>
+            <a
+              href="https://github.com/1morshed1/llama3-WebsiteBrochureGenerator"
+              target="_blank"
+              class="inline-block btn-primary text-white px-6 py-3 rounded-full text-md font-semibold"
+              >View on GitHub</a
+            >
+          </div>
+          <!-- Example Project Card 2 -->
+          <div
+            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
+          >
+            <h3
+              class="text-2xl font-semibold mb-4 text-gray-100 font-montserrat"
+            >
+              Website Summarizer
+            </h3>
+            <p class="text-gray-300 mb-6 text-lg text-justify">
+              A Python tool 🐍 that efficiently scrapes and refines webpage
+              content 🌍, leveraging a local LLM like Llama3.2 via Ollama 🧠 to
+              create sharp, concise summaries in markdown format 📄. Ideal for
+              transforming web data into polished, professional outputs with
+              flair! 🌟
+            </p>
+            <a
+              href="https://github.com/1morshed1/llama3-website-summarizer"
+              target="_blank"
+              class="inline-block btn-primary text-white px-6 py-3 rounded-full text-md font-semibold"
+              >View on GitHub</a
+            >
+          </div>
+          <!-- Add more project cards as needed, based on actual GitHub repositories -->
+          <div
+            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
+          >
+            <h3
+              class="text-2xl font-semibold mb-4 text-gray-100 font-montserrat"
+            >
+              6-DOF Robotic Arm Control with Flex Sensors
+            </h3>
+            <p class="text-gray-300 mb-6 text-lg text-justify">
+              This repository holds Arduino code 🤖 for controlling a 6 Degrees
+              of Freedom (DOF) robotic arm 🦾 using flex sensors 📏 as input.
+              Each flex sensor maps to a joint ⚙️ on the robotic arm, enabling
+              intuitive, human-like control 👐.
+            </p>
+            <a
+              href="https://github.com/1morshed1/6dof-robotic-arm-arduino"
+              target="_blank"
+              class="inline-block btn-primary text-white px-6 py-3 rounded-full text-md font-semibold"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+        <div class="text-center mt-16">
+          <a
+            href="https://github.com/1morshed1?tab=repositories"
+            target="_blank"
+            class="inline-block btn-secondary text-white px-10 py-4 rounded-full text-xl font-bold"
+            >View All Projects on GitHub</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+    <!-- Section Divider -->
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 mb-12 animated-section"
+    >
+      <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-10 section-title">Get In Touch</h2>
+        <p class="text-xl text-gray-300 mb-10 tracking-wide">
+          I'm always open to new opportunities and exciting collaborations. Feel
+          free to connect with me!
+        </p>
+        <div class="flex justify-center space-x-8">
+          <!-- GitHub -->
+          <a
+            href="https://github.com/1morshed1"
+            target="_blank"
+            class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
+          >
+            <svg
+              class="w-10 h-10 mb-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.47.087.68-.205.68-.456 0-.227-.007-.785-.011-1.536-2.77.602-3.354-1.335-3.354-1.335-.453-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.003.07 1.532 1.03 1.532 1.03.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.336-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.391-1.996 1.03-2.705-.103-.255-.446-1.285.098-2.67 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.385.202 2.415.099 2.67.64.709 1.029 1.609 1.029 2.705 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.855 0 1.336-.012 2.419-.012 2.747 0 .252.21.547.685.449C20.145 20.183 23 16.426 23 12.017 23 6.484 18.522 2 13 2h-1z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <!-- Email -->
+          <a
+            href="mailto:morshedfahim87@gmail.com"
+            class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
+          >
+            <svg
+              class="w-10 h-10 mb-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67L12 13.5 1.5 8.67zM19.5 3h-15A3 3 0 001.5 6.5V7l10.5 4.83L22.5 7V6.5a3 3 0 00-3-3z"
+              />
+            </svg>
+            <span>Email</span>
+          </a>
+          <!-- LinkedIn -->
+          <a
+            href="https://www.linkedin.com/in/morshed-jamal-a2ab66170/"
+            target="_blank"
+            class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
+          >
+            <svg
+              class="w-10 h-10 mb-2"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.75c0-1.17-.9-2.12-2.07-2.12-.86 0-1.43.58-1.66 1.14V19h-3v-9h2.97v1.27c.4-.64 1.05-1.27 2.4-1.27 2.4 0 4.03 1.57 4.03 4.9V19z"
+              />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="bg-gray-900 text-gray-400 py-8 text-center rounded-t-lg shadow-inner"
+    >
+      <div class="container mx-auto px-6">
+        <p class="text-md">
+          &copy; 2025 Md. Morshed Jamal. All rights reserved.
+        </p>
+        <p class="text-sm mt-2">Designed and developed with ❤️</p>
+      </div>
+    </footer>
+
     <script>
-        // creating button click show hide navbar
-        var togglebtn = document.querySelector(".togglebtn");
-        var nav = document.querySelector(".navlinks");
-        var links = document.querySelector(".navlinks li");
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Typed Text Effect ---
+        const taglineElement = document.getElementById("typed-tagline");
+        const taglines = [
+          "Software Engineer | Machine Learning Engineer",
+          "AI Enthusiast | Problem Solver",
+          "Innovator | Builder of Intelligent Systems",
+        ];
+        let taglineIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100; // ms per character
+        let deletingSpeed = 50; // ms per character
+        let delayBetweenTaglines = 1500; // ms
 
-        togglebtn.addEventListener("click", function(){
-            this.classList.toggle("click");
-            nav.classList.toggle("open");
-        })
+        function typeWriter() {
+          const currentTagline = taglines[taglineIndex];
+          if (isDeleting) {
+            taglineElement.textContent = currentTagline.substring(
+              0,
+              charIndex - 1
+            );
+            charIndex--;
+          } else {
+            taglineElement.textContent = currentTagline.substring(
+              0,
+              charIndex + 1
+            );
+            charIndex++;
+          }
 
-        var typed = new Typed(".input", {
-            strings:["", "Frontend Developer", "Backend Developer", "Machine Learning Engineer", "NLP Engineer", "Computer Vision Engineer"],
-            typedSpeed:70,
-            backSpeed: 55,
-            loop: true
-        })
+          let currentTypingSpeed = typingSpeed;
+          if (isDeleting) {
+            currentTypingSpeed = deletingSpeed;
+          } else if (charIndex === currentTagline.length) {
+            currentTypingSpeed = delayBetweenTaglines;
+            isDeleting = true;
+          } else if (charIndex === 0 && isDeleting) {
+            isDeleting = false;
+            taglineIndex = (taglineIndex + 1) % taglines.length;
+            currentTypingSpeed = typingSpeed;
+          }
+
+          setTimeout(typeWriter, currentTypingSpeed);
+        }
+        typeWriter(); // Start the typing effect
+
+        // --- Scroll Progress Indicator ---
+        const progressBar = document.getElementById("progressBar");
+        window.addEventListener("scroll", () => {
+          const totalHeight =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          const scrolled = window.scrollY;
+          const progress = (scrolled / totalHeight) * 100;
+          progressBar.style.width = progress + "%";
+        });
+
+        // --- Section Reveal Animations ---
+        const animatedSections = document.querySelectorAll(".animated-section");
+        const observerOptions = {
+          root: null, // viewport
+          rootMargin: "0px",
+          threshold: 0.1, // Trigger when 10% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target); // Stop observing once visible
+            }
+          });
+        }, observerOptions);
+
+        animatedSections.forEach((section) => {
+          observer.observe(section);
+        });
+
+        // --- Divider Animation on Scroll ---
+        const dividers = document.querySelectorAll(".divider");
+        const dividerObserverOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.5, // Trigger when 50% of the divider is visible
+        };
+
+        const dividerObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              } else {
+                entry.target.classList.remove("active"); // Remove class when not visible
+              }
+            });
+          },
+          dividerObserverOptions
+        );
+
+        dividers.forEach((divider) => {
+          dividerObserver.observe(divider);
+        });
+
+        // --- Sticky Header with Shrink/Change ---
+        const mainHeader = document.getElementById("mainHeader");
+        const headerHeight = mainHeader.offsetHeight; // Get initial height
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > headerHeight / 2) {
+            // When scrolled past half header height
+            mainHeader.classList.add("sticky-header");
+          } else {
+            mainHeader.classList.remove("sticky-header");
+          }
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
