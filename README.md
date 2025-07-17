@@ -89,13 +89,13 @@ You can easily customize this portfolio to suit your needs:
 
 Content:
 
-- Edit the text within the <h1>, <p>, <li> tags in each section (#about, #experience, #skills, #projects, #contact) to reflect your own information.
+Edit the text within the <h1>, <p>, <li> tags in each section (#about, #experience, #skills, #projects, #contact) to reflect your own information.
 
-- Update the src attribute of the <img> tag in the header with your profile picture.
+Update the src attribute of the <img> tag in the header with your profile picture.
 
-- Replace placeholder links (e.g., https://github.com/1morshed1/repo-name-2, your.email@example.com) with your actual GitHub repository URLs, email address, and LinkedIn profile link.
+Replace placeholder links (e.g., https://github.com/1morshed1/repo-name-2, your.email@example.com) with your actual GitHub repository URLs, email address, and LinkedIn profile link.
 
-- Add more contact links in the Contact section by following the existing Markdown link format: [Link Text](URL).
+Add more contact links in the Contact section by following the existing Markdown link format: [Link Text](URL).
 
 Styling:
 
