@@ -83,34 +83,6 @@ To view this portfolio website locally:
 
 - Simply open the index.html file in your preferred web browser. No special server setup is required as it's a static HTML page.
 
-🎨 Customization
-
-You can easily customize this portfolio to suit your needs:
-
-Content:
-
-Edit the text within the <h1>, <p>, <li> tags in each section (#about, #experience, #skills, #projects, #contact) to reflect your own information.
-
-Update the src attribute of the <img> tag in the header with your profile picture.
-
-Replace placeholder links (e.g., https://github.com/1morshed1/repo-name-2, your.email@example.com) with your actual GitHub repository URLs, email address, and LinkedIn profile link.
-
-Add more contact links in the Contact section by following the existing Markdown link format: [Link Text](URL).
-
-Styling:
-
-- Modify the Tailwind CSS classes directly in the HTML for quick style changes (e.g., bg-blue-800 to bg-purple-800).
-
-- Adjust the custom CSS in the <style> block for more specific visual tweaks (e.g., changing background-color, border-color, transition properties, animation keyframes).
-
-- Experiment with the .section-title::after, .card-hover, .btn-primary, and .social-icon-hover styles for different animation effects.
-
-Sections:
-
-- Add or remove entire sections as needed by copying or deleting the <section> blocks.
-
-- Duplicate div elements within sections (e.g., experience-item, project-card) to add more entries.
-
 📧 Contact
 
 Feel free to connect with Md. Morshed Jamal through the following channels.
