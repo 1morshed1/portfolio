@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Md. Morshed Jamal - Portfolio</title>
-    <!-- Favicon -->
     <link
       rel="icon"
       href="https://placehold.co/32x32/121212/4299e1?text=MJ"
       type="image/x-icon"
     />
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter for body, Montserrat for headings -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800;900&display=swap"
       rel="stylesheet"
@@ -332,10 +329,8 @@
     </style>
   </head>
   <body class="text-gray-800">
-    <!-- Scroll Progress Bar -->
     <div id="progressBar"></div>
 
-    <!-- Header Section -->
     <header
       id="mainHeader"
       class="bg-gradient-to-r from-blue-800 to-indigo-900 text-white py-16 shadow-2xl relative overflow-hidden"
@@ -365,7 +360,6 @@
           </p>
         </div>
         <div class="flex-shrink-0 relative group">
-          <!-- Profile Picture with subtle hover effect and glow -->
           <img
             src="images/Untitled.jpg"
             alt="Profile Picture"
@@ -377,7 +371,6 @@
         </div>
       </div>
 
-      <!-- Navigation Bar -->
       <nav class="absolute top-0 right-0 p-6 z-20">
         <ul
           class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8"
@@ -412,6 +405,13 @@
           </li>
           <li>
             <a
+              href="#chatbot"
+              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
+              >Chatbot</a
+            >
+          </li>
+          <li>
+            <a
               href="#contact"
               class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
               >Contact</a
@@ -421,7 +421,6 @@
       </nav>
     </header>
 
-    <!-- About Section -->
     <section
       id="about"
       class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
@@ -459,9 +458,6 @@
     </section>
 
     <div class="divider"></div>
-    <!-- Section Divider -->
-
-    <!-- Experience Section -->
     <section
       id="experience"
       class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
@@ -471,7 +467,6 @@
           Experience
         </h2>
         <div class="space-y-10">
-          <!-- Experience Item 1 -->
           <div
             class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
           >
@@ -481,7 +476,7 @@
               Member, Software Sub Team
             </h3>
             <p class="text-xl text-gray-200 mb-2">Team Interplaneter, BUET</p>
-            <p class="text-md text-gray-400 mb-5">January 2029 - March 2020</p>
+            <p class="text-md text-gray-400 mb-5">January 29 - March 20</p>
             <ul class="list-disc list-inside text-gray-300 text-lg space-y-3">
               <li>
                 Developed robust object and ArUco marker detection systems using
@@ -502,7 +497,6 @@
               </li>
             </ul>
           </div>
-          <!-- Experience Item 2 -->
           <div
             class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
           >
@@ -524,15 +518,11 @@
               </li>
             </ul>
           </div>
-          <!-- Add more experience items as needed -->
         </div>
       </div>
     </section>
 
     <div class="divider"></div>
-    <!-- Section Divider -->
-
-    <!-- Skills Section -->
     <section
       id="skills"
       class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
@@ -542,7 +532,6 @@
           Skills
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <!-- Programming Languages -->
           <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
             <h3
               class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
@@ -555,7 +544,6 @@
               <li>⚙️ C++</li>
             </ul>
           </div>
-          <!-- Web Technologies -->
           <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
             <h3
               class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
@@ -568,7 +556,6 @@
               <li>💡 JavaScript</li>
             </ul>
           </div>
-          <!-- ML & Data Science Libraries -->
           <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
             <h3
               class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
@@ -588,9 +575,6 @@
     </section>
 
     <div class="divider"></div>
-    <!-- Section Divider -->
-
-    <!-- Projects Section -->
     <section
       id="projects"
       class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
@@ -600,7 +584,6 @@
           Projects
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <!-- Example Project Card 1 -->
           <div
             class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
           >
@@ -623,7 +606,6 @@
               >View on GitHub</a
             >
           </div>
-          <!-- Example Project Card 2 -->
           <div
             class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
           >
@@ -646,7 +628,6 @@
               >View on GitHub</a
             >
           </div>
-          <!-- Add more project cards as needed, based on actual GitHub repositories -->
           <div
             class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
           >
@@ -681,12 +662,36 @@
     </section>
 
     <div class="divider"></div>
-    <!-- Section Divider -->
 
-    <!-- Contact Section -->
+    <section
+      id="chatbot"
+      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+    >
+      <div class="container mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-10 section-title">Chat with Me</h2>
+        <p class="text-xl text-gray-300 mb-10 tracking-wide">
+          Ask the AI version of me about my experience, skills, and projects!
+        </p>
+        <div
+          id="chatbot-canvas"
+          class="w-full max-w-4xl mx-auto h-[600px] rounded-lg overflow-hidden shadow-2xl border-2 border-blue-400"
+        >
+          <iframe
+            src="https://ilia-volyova-personal-chatbot.hf.space"
+            frameborder="0"
+            title="Md. Morshed Jamal"
+            width="850"
+            height="450"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
     <section
       id="contact"
-      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 mb-12 animated-section"
+      class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 mb-12 animated-section"
     >
       <div class="container mx-auto text-center">
         <h2 class="text-4xl font-bold mb-10 section-title">Get In Touch</h2>
@@ -695,7 +700,6 @@
           free to connect with me!
         </p>
         <div class="flex justify-center space-x-8">
-          <!-- GitHub -->
           <a
             href="https://github.com/1morshed1"
             target="_blank"
@@ -715,7 +719,6 @@
             </svg>
             <span>GitHub</span>
           </a>
-          <!-- Email -->
           <a
             href="mailto:morshedfahim87@gmail.com"
             class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
@@ -732,7 +735,6 @@
             </svg>
             <span>Email</span>
           </a>
-          <!-- LinkedIn -->
           <a
             href="https://www.linkedin.com/in/morshed-jamal-a2ab66170/"
             target="_blank"
@@ -754,7 +756,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer
       class="bg-gray-900 text-gray-400 py-8 text-center rounded-t-lg shadow-inner"
     >
@@ -869,19 +870,6 @@
 
         dividers.forEach((divider) => {
           dividerObserver.observe(divider);
-        });
-
-        // --- Sticky Header with Shrink/Change ---
-        const mainHeader = document.getElementById("mainHeader");
-        const headerHeight = mainHeader.offsetHeight; // Get initial height
-
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > headerHeight / 2) {
-            // When scrolled past half header height
-            mainHeader.classList.add("sticky-header");
-          } else {
-            mainHeader.classList.remove("sticky-header");
-          }
         });
       });
     </script>
