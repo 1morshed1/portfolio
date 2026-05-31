@@ -6,78 +6,141 @@
     <title>Md. Morshed Jamal - Portfolio</title>
     <link
       rel="icon"
-      href="https://placehold.co/32x32/121212/4299e1?text=MJ"
+      href="https://placehold.co/32x32/1a1209/c8a84e?text=MJ"
       type="image/x-icon"
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Montserrat:wght@700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cinzel+Decorative:wght@400;700;900&family=EB+Garamond:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #121212; /* Very dark background */
-        color: #e0e0e0; /* Light gray text for contrast */
-        scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-        line-height: 1.6;
-        /* Subtle radial gradient for background texture */
-        background-image: radial-gradient(
-            at 50% 0%,
-            rgba(26, 32, 44, 0.3) 0%,
-            transparent 70%
-          ),
-          radial-gradient(at 0% 100%, rgba(26, 32, 44, 0.3) 0%, transparent 70%);
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        position: relative; /* For vignette */
-        overflow-x: hidden; /* Prevent horizontal scroll from animations */
+      :root {
+        --w3-bg-darkest: #0a0a0a;
+        --w3-bg-dark: #121008;
+        --w3-bg-leather: #1a1209;
+        --w3-bg-leather-light: #2a1f0e;
+        --w3-bg-card: #1c1710;
+        --w3-bg-card-hover: #2a2118;
+        --w3-bg-section-alt: #15110a;
+        --w3-gold: #c8a84e;
+        --w3-gold-bright: #d4a843;
+        --w3-gold-dim: #a08030;
+        --w3-gold-pale: #d4c5a0;
+        --w3-red: #8b1a1a;
+        --w3-green: #2d4a3e;
+        --w3-text-primary: #d4c5a0;
+        --w3-text-secondary: #b0a080;
+        --w3-text-heading: #f0e6c8;
+        --w3-border: #3d2e1a;
+        --w3-border-gold: #c8a84e;
+        --w3-glow-gold: rgba(200, 168, 78, 0.4);
+        --w3-glow-gold-strong: rgba(200, 168, 78, 0.7);
+        --w3-shadow-dark: rgba(0, 0, 0, 0.7);
       }
 
-      /* Vignette Effect */
+      /* Loading screen */
+      #loading-screen {
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease-out;
+      }
+      #loading-screen.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+      #loading-medallion {
+        animation: medallion-pulse 2s ease-in-out infinite;
+      }
+      @keyframes medallion-pulse {
+        0%, 100% { filter: drop-shadow(0 0 10px rgba(200,168,78,0.3)); transform: scale(1); }
+        50% { filter: drop-shadow(0 0 30px rgba(200,168,78,0.7)); transform: scale(1.05); }
+      }
+      #loading-bar-track {
+        width: 300px;
+        height: 3px;
+        background: var(--w3-border);
+        margin-top: 2rem;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      #loading-bar-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(to right, var(--w3-gold-dim), var(--w3-gold-bright));
+        transition: width 0.3s ease;
+      }
+      #loading-tip {
+        margin-top: 1.5rem;
+        font-family: "EB Garamond", serif;
+        font-style: italic;
+        color: var(--w3-text-secondary);
+        font-size: 1rem;
+        max-width: 400px;
+        text-align: center;
+        opacity: 0.8;
+      }
+
+      /* Custom cursor */
+      body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='%23c8a84e' stroke-width='1' opacity='0.6'/%3E%3Ccircle cx='10' cy='10' r='2' fill='%23c8a84e' opacity='0.8'/%3E%3Cline x1='10' y1='0' x2='10' y2='5' stroke='%23c8a84e' stroke-width='0.8' opacity='0.5'/%3E%3Cline x1='10' y1='15' x2='10' y2='20' stroke='%23c8a84e' stroke-width='0.8' opacity='0.5'/%3E%3Cline x1='0' y1='10' x2='5' y2='10' stroke='%23c8a84e' stroke-width='0.8' opacity='0.5'/%3E%3Cline x1='15' y1='10' x2='20' y2='10' stroke='%23c8a84e' stroke-width='0.8' opacity='0.5'/%3E%3C/svg%3E") 10 10, crosshair; }
+      a, button, .btn-primary, .btn-secondary, .card-hover, .nav-link-hover {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M5 1L19 12L12 13L15 22L11 20L8 13L5 16Z' fill='%23c8a84e' stroke='%230a0a0a' stroke-width='1'/%3E%3C/svg%3E") 5 1, pointer;
+      }
+
+      body {
+        font-family: "EB Garamond", serif;
+        background-color: var(--w3-bg-darkest);
+        color: var(--w3-text-primary);
+        scroll-behavior: smooth;
+        line-height: 1.8;
+        background-image:
+          url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+          radial-gradient(at 50% 0%, rgba(42, 31, 14, 0.4) 0%, transparent 70%),
+          radial-gradient(at 0% 100%, rgba(26, 18, 9, 0.4) 0%, transparent 70%);
+        background-repeat: repeat, no-repeat, no-repeat;
+        background-size: 256px 256px, 100% 100%, 100% 100%;
+        position: relative;
+        overflow-x: hidden;
+      }
+
       body::before {
         content: "";
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         pointer-events: none;
-        background: radial-gradient(
-          ellipse at center,
-          transparent 0%,
-          rgba(0, 0, 0, 0.3) 80%
-        );
-        z-index: 999; /* Ensure it's on top of content but behind fixed nav */
+        background: radial-gradient(ellipse at center, transparent 0%, rgba(10,8,4,0.4) 75%, rgba(10,8,4,0.7) 100%);
+        z-index: 999;
       }
 
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #1f2937; /* Darker track */
-        border-radius: 10px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #4299e1; /* Blue thumb */
-        border-radius: 10px;
-        border: 2px solid #1f2937; /* Border around thumb */
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #3182ce; /* Darker blue on hover */
-      }
+      ::selection { background: var(--w3-gold-dim); color: var(--w3-bg-darkest); }
 
-      /* Section Title Styling */
+      ::-webkit-scrollbar { width: 10px; }
+      ::-webkit-scrollbar-track { background: var(--w3-bg-leather); border-left: 1px solid var(--w3-border); }
+      ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, var(--w3-gold-dim), var(--w3-gold)); border-radius: 2px; border: 2px solid var(--w3-bg-leather); }
+      ::-webkit-scrollbar-thumb:hover { background: var(--w3-gold-bright); }
+
+      .font-cinzel { font-family: "Cinzel", serif; }
+      .font-cinzel-decorative { font-family: "Cinzel Decorative", serif; }
+
+      /* Witcher Sign icons next to section titles */
       .section-title {
-        font-family: "Montserrat", sans-serif; /* Custom font for titles */
+        font-family: "Cinzel", serif;
         position: relative;
-        display: inline-block;
-        padding-bottom: 8px;
-        color: #f0f0f0; /* Brighter title color */
-        font-weight: 800; /* Bolder weight */
-        letter-spacing: 0.08em; /* Increased letter spacing */
-        text-transform: uppercase; /* Uppercase for impact */
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding-bottom: 12px;
+        color: var(--w3-text-heading);
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        text-shadow: 0 0 15px var(--w3-glow-gold);
       }
       .section-title::after {
         content: "";
@@ -85,645 +148,1319 @@
         left: 0;
         bottom: 0;
         width: 50%;
-        height: 4px; /* Thicker underline */
-        background-color: #4299e1; /* Vibrant blue underline */
+        height: 2px;
+        background: linear-gradient(to right, var(--w3-gold), var(--w3-gold-dim), transparent);
         border-radius: 9999px;
-        transition: width 0.3s ease-in-out; /* Animation for underline */
+        transition: width 0.3s ease-in-out;
       }
-      .section-title:hover::after {
-        width: 100%; /* Expand underline on hover */
+      .section-title:hover::after { width: 100%; }
+      .witcher-sign {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        opacity: 0.7;
+        transition: opacity 0.3s, filter 0.3s;
+      }
+      .section-title:hover .witcher-sign {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px rgba(200,168,78,0.6));
       }
 
-      /* Custom hover effect for cards */
       .card-hover {
-        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother cubic-bezier transition */
-        transform-style: preserve-3d; /* For 3D tilt */
+        transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        transform-style: preserve-3d;
         position: relative;
-        z-index: 1; /* Ensure cards are above background effects */
+        z-index: 1;
       }
       .card-hover:hover {
-        transform: perspective(1000px) translateY(-12px) rotateX(2deg)
-          rotateY(1deg) scale(1.02); /* More pronounced lift, slight 3D tilt, and slight scale */
-        box-shadow: 0 28px 50px -18px rgba(0, 0, 0, 0.7),
-          0 12px 25px -12px rgba(0, 0, 0, 0.5); /* Deeper, more diffused shadow */
-        border-color: #4299e1; /* Blue border on hover */
-        background-color: #2a3547; /* Slightly lighter on hover */
+        transform: perspective(1000px) translateY(-8px) rotateX(1deg) rotateY(0.5deg) scale(1.01);
+        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8), 0 0 20px var(--w3-glow-gold);
+        border-color: var(--w3-gold) !important;
+        background-color: var(--w3-bg-card-hover) !important;
       }
+
       .bg-card {
-        background-color: #1f2937; /* Darker card background */
-        color: #e0e0e0; /* Light text on cards */
-        border: 1px solid #374151; /* Subtle border */
-        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle inner shadow */
+        background-color: var(--w3-bg-card);
+        color: var(--w3-text-primary);
+        border: 1px solid var(--w3-border);
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+        position: relative;
       }
-      .bg-section-alt {
-        background-color: #1a202c; /* Slightly different dark background for alternating sections */
+      .bg-card::before, .bg-card::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        border-color: var(--w3-gold-dim);
+        pointer-events: none;
+        z-index: 2;
       }
+      .bg-card::before { top: 6px; left: 6px; border-top: 2px solid var(--w3-gold-dim); border-left: 2px solid var(--w3-gold-dim); }
+      .bg-card::after { bottom: 6px; right: 6px; border-bottom: 2px solid var(--w3-gold-dim); border-right: 2px solid var(--w3-gold-dim); }
+
+      .bg-section-alt { background-color: var(--w3-bg-section-alt); }
+
       .text-gradient {
-        background-image: linear-gradient(to right, #63b3ed, #4299e1);
+        background-image: linear-gradient(to right, var(--w3-gold-pale), var(--w3-gold-bright), var(--w3-gold));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
-      /* Button Styling */
+      /* Buttons */
       .btn-primary {
-        background-color: #4299e1;
+        background-color: transparent;
+        border: 2px solid var(--w3-gold);
+        color: var(--w3-gold);
+        font-family: "Cinzel", serif;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
         transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 10px rgba(66, 153, 225, 0.3); /* Initial subtle glow */
+        box-shadow: 0 0 8px var(--w3-glow-gold);
         position: relative;
         overflow: hidden;
       }
       .btn-primary:hover {
-        background-color: #3182ce;
-        transform: translateY(-3px) scale(1.05); /* More pronounced lift and scale */
-        box-shadow: 0 8px 20px rgba(66, 153, 225, 0.6); /* Stronger glow on hover */
+        background-color: var(--w3-gold);
+        color: var(--w3-bg-darkest);
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px var(--w3-glow-gold-strong);
       }
-      /* Pulse effect for buttons */
       .btn-primary::before {
         content: "";
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
+        top: 50%; left: 50%;
+        width: 0; height: 0;
+        background: rgba(200,168,78,0.2);
+        transform: translate(-50%,-50%);
         opacity: 0;
-        transition: width 0.5s ease-out, height 0.5s ease-out,
-          opacity 0.5s ease-out;
+        transition: width 0.5s, height 0.5s, opacity 0.5s;
       }
-      .btn-primary:hover::before {
-        width: 200%;
-        height: 200%;
-        opacity: 1;
-      }
+      .btn-primary:hover::before { width: 300%; height: 300%; opacity: 1; }
 
       .btn-secondary {
-        background-color: #4a5568;
+        background-color: var(--w3-bg-leather-light);
+        border: 1px solid var(--w3-border);
+        color: var(--w3-gold-pale);
+        font-family: "Cinzel", serif;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
         transition: all 0.3s ease-in-out;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       }
       .btn-secondary:hover {
-        background-color: #2d3748;
-        transform: translateY(-3px); /* More pronounced lift */
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        background-color: var(--w3-bg-leather);
+        border-color: var(--w3-gold);
+        transform: translateY(-2px);
+        box-shadow: 0 0 12px var(--w3-glow-gold);
       }
 
-      /* Profile Picture Glow */
+      .profile-pic-glow { transition: all 0.3s ease-in-out; }
       .profile-pic-glow:hover {
-        box-shadow: 0 0 25px rgba(66, 153, 225, 0.9),
-          0 0 50px rgba(66, 153, 225, 0.5); /* Stronger blue glow effect */
+        box-shadow: 0 0 25px var(--w3-glow-gold-strong), 0 0 50px var(--w3-glow-gold);
       }
+      .text-shadow-light { text-shadow: 3px 3px 8px rgba(0,0,0,0.7); }
 
-      /* Text Shadow for Headings */
-      .text-shadow-light {
-        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7); /* More pronounced text shadow */
-      }
-
-      /* Section Divider Styling */
+      /* Divider */
       .divider {
-        height: 3px; /* Thicker divider */
-        background: linear-gradient(
-          to right,
-          transparent,
-          #4299e1,
-          transparent
-        );
-        width: 70%; /* Slightly narrower divider */
-        margin: 5rem auto; /* More margin */
-        border-radius: 9999px;
-        opacity: 0.7; /* Slightly transparent */
-        transition: all 0.5s ease-in-out;
+        height: 30px; width: 80%; margin: 4rem auto;
+        display: flex; align-items: center; justify-content: center;
+        opacity: 0.7; transition: all 0.5s ease-in-out;
       }
-      .divider.active {
-        width: 85%; /* Expand on active/scroll */
-        opacity: 1;
-      }
+      .divider::before, .divider::after { content: ""; flex: 1; height: 1px; }
+      .divider::before { background: linear-gradient(to right, transparent, var(--w3-gold-dim)); }
+      .divider::after { background: linear-gradient(to left, transparent, var(--w3-gold-dim)); }
+      .divider.active { opacity: 1; }
+      .divider svg { margin: 0 12px; flex-shrink: 0; }
 
-      /* Highlighted Text */
       .highlight-text {
-        color: #63b3ed; /* Lighter blue for highlighted text */
+        color: var(--w3-gold-bright);
         font-weight: 600;
-        transition: color 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
       }
-      .highlight-text:hover {
-        color: #90cdf4; /* Even lighter blue on hover */
-      }
+      .highlight-text:hover { color: var(--w3-gold-pale); text-shadow: 0 0 8px var(--w3-glow-gold); }
 
-      /* Nav Link Hover Effect */
-      .nav-link-hover:hover {
-        text-shadow: 0 0 12px rgba(255, 255, 255, 0.7); /* Stronger text shadow on nav hover */
+      .nav-link-hover { font-family: "Cinzel", serif; position: relative; }
+      .nav-link-hover::after {
+        content: ""; position: absolute; bottom: -4px; left: 0;
+        width: 0; height: 1px; background: var(--w3-gold); transition: width 0.3s ease;
       }
+      .nav-link-hover:hover { text-shadow: 0 0 12px var(--w3-glow-gold); }
+      .nav-link-hover:hover::after { width: 100%; }
 
-      /* Icon Animations */
-      .social-icon-hover:hover {
-        animation: bounce-scale 0.5s ease-in-out forwards;
-      }
+      .social-icon-hover:hover { animation: bounce-scale 0.5s ease-in-out forwards; }
       @keyframes bounce-scale {
-        0% {
-          transform: translateY(0) scale(1);
-        }
-        50% {
-          transform: translateY(-5px) scale(1.1);
-        }
-        100% {
-          transform: translateY(0) scale(1.05);
-        }
+        0% { transform: translateY(0) scale(1); }
+        50% { transform: translateY(-5px) scale(1.1); }
+        100% { transform: translateY(0) scale(1.05); }
       }
 
-      /* Reveal Animations on Scroll */
       .animated-section {
-        opacity: 0;
-        transform: translateY(50px);
+        opacity: 0; transform: translateY(50px);
         transition: opacity 0.8s ease-out, transform 0.8s ease-out;
       }
       .animated-section.is-visible {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1; transform: translateY(0);
+        animation: golden-shimmer 1.5s ease-out 0.3s 1;
+      }
+      @keyframes golden-shimmer {
+        0% { box-shadow: none; }
+        50% { box-shadow: 0 0 30px rgba(200,168,78,0.3); }
+        100% { box-shadow: none; }
       }
 
-      /* Typing Effect */
-      .typed-text-container {
-        min-height: 2.5em; /* Ensure space for typing text */
+      .typed-text-container { min-height: 2.5em; display: inline-block; vertical-align: middle; }
+      .typed-text {
+        overflow: hidden;
+        border-right: 0.15em solid var(--w3-gold);
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: 0.15em;
+        animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing { from { width: 0; } to { width: 100%; } }
+      @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: var(--w3-gold); } }
+
+      #progressBar {
+        position: fixed; top: 0; left: 0; width: 0%; height: 3px;
+        background: linear-gradient(to right, var(--w3-gold-dim), var(--w3-gold-bright));
+        z-index: 1000; transition: width 0.1s linear;
+        box-shadow: 0 0 8px var(--w3-glow-gold);
+      }
+
+      .sticky-header {
+        position: fixed; top: 0; left: 0; width: 100%;
+        background-color: rgba(10,10,10,0.97);
+        padding: 1rem 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.6), 0 1px 0 var(--w3-border);
+        transition: all 0.3s ease-in-out;
+        z-index: 990;
+        border-bottom: 1px solid var(--w3-border);
+      }
+      .sticky-header .container { flex-direction: row !important; justify-content: space-between; align-items: center; }
+      .sticky-header .text-5xl { font-size: 2.5rem !important; }
+      .sticky-header .text-2xl, .sticky-header .text-md { display: none !important; }
+      .sticky-header .flex-shrink-0 { display: none !important; }
+      .sticky-header .p-6 { padding: 0.5rem 1.5rem !important; }
+
+      .hero-frame { border: 1px solid var(--w3-border); position: relative; }
+      .hero-frame > .hero-inner-border {
+        position: absolute; inset: 8px;
+        border: 1px solid var(--w3-gold-dim);
+        pointer-events: none; opacity: 0.3; z-index: 0;
+      }
+
+      /* Parchment scroll for About */
+      .parchment-scroll {
+        position: relative;
+        background: linear-gradient(135deg, #1e180e 0%, #1a1209 50%, #15110a 100%);
+        border: 1px solid var(--w3-border);
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.4);
+      }
+      .parchment-scroll::before {
+        content: "";
+        position: absolute;
+        top: -6px; left: 20px; right: 20px; height: 12px;
+        background: linear-gradient(to bottom, var(--w3-bg-leather-light), transparent);
+        border-top: 2px solid var(--w3-gold-dim);
+        border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+        opacity: 0.6;
+      }
+      .parchment-scroll::after {
+        content: "";
+        position: absolute;
+        bottom: -6px; left: 20px; right: 20px; height: 12px;
+        background: linear-gradient(to top, var(--w3-bg-leather-light), transparent);
+        border-bottom: 2px solid var(--w3-gold-dim);
+        border-radius: 0 0 50% 50% / 0 0 100% 100%;
+        opacity: 0.6;
+      }
+
+      /* Quest Log (Experience) */
+      .quest-entry {
+        position: relative;
+        background: linear-gradient(135deg, var(--w3-bg-card) 0%, #1a1408 100%);
+        border: 1px solid var(--w3-border);
+        border-left: 3px solid var(--w3-gold-dim);
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+      }
+      .quest-entry::before, .quest-entry::after {
+        content: "";
+        position: absolute;
+        width: 20px; height: 20px;
+        pointer-events: none; z-index: 2;
+      }
+      .quest-entry::before { top: 6px; left: 6px; border-top: 2px solid var(--w3-gold-dim); border-left: 2px solid var(--w3-gold-dim); }
+      .quest-entry::after { bottom: 6px; right: 6px; border-bottom: 2px solid var(--w3-gold-dim); border-right: 2px solid var(--w3-gold-dim); }
+      .quest-badge {
+        display: inline-block;
+        font-family: "Cinzel", serif;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        padding: 3px 12px;
+        border: 1px solid;
+        margin-bottom: 0.75rem;
+      }
+      .quest-badge-active { color: var(--w3-gold); border-color: var(--w3-gold-dim); background: rgba(200,168,78,0.08); }
+      .quest-badge-complete { color: #4a8a5a; border-color: #2d6a3e; background: rgba(45,106,62,0.1); }
+      .quest-xp {
+        font-family: "Cinzel", serif;
+        font-size: 0.75rem;
+        color: var(--w3-gold-dim);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      /* Contract Board (Projects) */
+      .contract-board {
+        position: relative;
+        background: linear-gradient(180deg, #1a1209 0%, #15110a 100%);
+        border: 3px solid var(--w3-border);
+        box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        padding: 2rem;
+      }
+      .contract-board::before {
+        content: "NOTICE BOARD";
+        position: absolute;
+        top: -14px; left: 50%;
+        transform: translateX(-50%);
+        font-family: "Cinzel", serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        color: var(--w3-gold-dim);
+        background: var(--w3-bg-leather);
+        padding: 2px 16px;
+        border: 1px solid var(--w3-border);
+      }
+      .contract-card {
+        background: linear-gradient(170deg, #2a2010 0%, #1e180e 40%, #1a1209 100%);
+        border: 1px solid var(--w3-border);
+        position: relative;
+        transform: rotate(-0.5deg);
+        transition: all 0.3s ease;
+        box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+      }
+      .contract-card:nth-child(2) { transform: rotate(0.7deg); }
+      .contract-card:hover {
+        transform: rotate(0deg) translateY(-5px) !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px var(--w3-glow-gold);
+        border-color: var(--w3-gold-dim);
+      }
+      .contract-card::before {
+        content: "";
+        position: absolute;
+        top: 6px; left: 6px; right: 6px; bottom: 6px;
+        border: 1px solid rgba(200,168,78,0.1);
+        pointer-events: none;
+      }
+      .wax-seal {
+        width: 40px; height: 40px;
+        border-radius: 50%;
+        background: radial-gradient(circle, #a52525 0%, #7a1515 60%, #5a0f0f 100%);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px 2px rgba(255,255,255,0.1);
+        display: flex; align-items: center; justify-content: center;
+        position: absolute;
+        top: 10px; right: 14px;
+      }
+      .wax-seal svg { width: 20px; height: 20px; }
+
+      /* Gwent cards */
+      .gwent-card {
+        position: relative;
+        border: 2px solid var(--w3-gold-dim) !important;
+        background: linear-gradient(180deg, #1e180e 0%, #140f08 60%, #0d0a05 100%) !important;
+        border-radius: 8px !important;
+        overflow: hidden;
+        padding-top: 3.5rem !important;
+      }
+      .gwent-card::before {
+        content: "";
+        position: absolute;
+        top: 3px; left: 3px; right: 3px; bottom: 3px;
+        border: 1px solid rgba(200,168,78,0.2);
+        border-radius: 6px;
+        pointer-events: none; z-index: 1;
+      }
+      .gwent-card::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; height: 4px;
+        z-index: 2; pointer-events: none;
+      }
+      .gwent-card h3 { color: var(--w3-gold) !important; text-shadow: 0 0 10px var(--w3-glow-gold); }
+
+      .gwent-faction-nilfgaard::after { background: linear-gradient(to right, transparent, #c8a84e, #d4a843, #c8a84e, transparent); }
+      .gwent-faction-monsters::after { background: linear-gradient(to right, transparent, #8b1a1a, #a52525, #8b1a1a, transparent); }
+      .gwent-faction-skellige::after { background: linear-gradient(to right, transparent, #3a6b8a, #4a8ab0, #3a6b8a, transparent); }
+      .gwent-faction-scoiatael::after { background: linear-gradient(to right, transparent, #2d6a3e, #3d8a4e, #2d6a3e, transparent); }
+      .gwent-faction-northern::after { background: linear-gradient(to right, transparent, #4a6a9a, #5a7ab0, #4a6a9a, transparent); }
+
+      .gwent-strength {
+        position: absolute; top: 8px; left: 10px;
+        width: 36px; height: 36px;
+        display: flex; align-items: center; justify-content: center;
+        font-family: "Cinzel", serif; font-weight: 900; font-size: 1.1rem;
+        color: var(--w3-text-heading); z-index: 3;
+        text-shadow: 0 0 6px rgba(0,0,0,0.9);
+      }
+      .gwent-strength svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      .gwent-strength span { position: relative; z-index: 1; }
+      .gwent-row {
+        position: absolute; top: 10px; right: 10px;
+        font-family: "Cinzel", serif; font-size: 0.65rem;
+        letter-spacing: 0.15em; text-transform: uppercase;
+        color: var(--w3-gold-dim); opacity: 0.7; z-index: 3;
+      }
+      .gwent-card:hover .gwent-strength { text-shadow: 0 0 12px var(--w3-glow-gold-strong); }
+      .gwent-card:hover { border-color: var(--w3-gold-bright) !important; }
+
+      /* Gwent board layout */
+      .gwent-board {
+        position: relative;
+        border: 2px solid var(--w3-border);
+        background: linear-gradient(180deg, #0d0a05 0%, #15110a 50%, #0d0a05 100%);
+        padding: 1.5rem;
+      }
+      .gwent-board::before {
+        content: "";
+        position: absolute; inset: 4px;
+        border: 1px solid rgba(200,168,78,0.1);
+        pointer-events: none;
+      }
+      .gwent-row-label {
+        font-family: "Cinzel", serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--w3-gold-dim);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        padding: 0.5rem 0;
+        border-right: 1px solid var(--w3-border);
+        min-width: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .gwent-row-score {
+        font-family: "Cinzel", serif;
+        font-weight: 900;
+        font-size: 1.4rem;
+        color: var(--w3-gold);
+        text-shadow: 0 0 10px var(--w3-glow-gold);
+        min-width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid var(--w3-border);
+      }
+      .gwent-board-row {
+        display: flex;
+        border-bottom: 1px solid var(--w3-border);
+        min-height: 80px;
+      }
+      .gwent-board-row:last-child { border-bottom: none; }
+      .gwent-board-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        flex: 1;
+      }
+      .gwent-board-total {
+        text-align: center;
+        padding: 0.75rem;
+        border-top: 2px solid var(--w3-gold-dim);
+        font-family: "Cinzel", serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.15em;
+        color: var(--w3-gold);
+      }
+
+      .bg-card li::marker { color: var(--w3-gold-dim); }
+      .gwent-card li { color: var(--w3-text-secondary); }
+
+      /* Inventory tooltip */
+      .skill-item {
+        position: relative;
+        cursor: default;
+      }
+      .skill-item .tooltip {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #1a1209 0%, #0d0a05 100%);
+        border: 1px solid var(--w3-gold-dim);
+        padding: 10px 14px;
+        width: 240px;
+        z-index: 100;
+        pointer-events: none;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+      }
+      .skill-item:hover .tooltip { display: block; }
+      .tooltip-name {
+        font-family: "Cinzel", serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+      }
+      .tooltip-rarity-legendary { color: #e89632; }
+      .tooltip-rarity-epic { color: #a335ee; }
+      .tooltip-rarity-rare { color: #0070dd; }
+      .tooltip-rarity-common { color: var(--w3-text-primary); }
+      .tooltip-type {
+        font-size: 0.7rem;
+        color: var(--w3-gold-dim);
+        font-family: "Cinzel", serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .tooltip-desc {
+        font-size: 0.8rem;
+        font-style: italic;
+        color: var(--w3-text-secondary);
+        line-height: 1.4;
+      }
+      .tooltip-sep {
+        height: 1px;
+        background: var(--w3-border);
+        margin: 6px 0;
+      }
+
+      /* Bestiary fields */
+      .bestiary-field {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 0.5rem;
+        align-items: baseline;
+      }
+      .bestiary-label {
+        font-family: "Cinzel", serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--w3-gold);
+        min-width: 90px;
+        flex-shrink: 0;
+      }
+      .bestiary-value {
+        color: var(--w3-text-secondary);
+        font-size: 1.05rem;
+      }
+
+      /* Level bar */
+      .level-bar-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0.75rem;
+      }
+      .level-badge {
+        font-family: "Cinzel", serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--w3-gold);
+        white-space: nowrap;
+      }
+      .level-bar-track {
+        flex: 1;
+        height: 6px;
+        background: var(--w3-border);
+        border-radius: 3px;
+        overflow: hidden;
+        max-width: 200px;
+      }
+      .level-bar-fill {
+        height: 100%;
+        background: linear-gradient(to right, var(--w3-gold-dim), var(--w3-gold-bright));
+        border-radius: 3px;
+        transition: width 1.5s ease-out;
+      }
+
+      /* Gwent card flip */
+      .gwent-flip-container {
+        perspective: 800px;
+        min-width: 200px;
+        flex: 1;
+      }
+      .gwent-flip-inner {
+        position: relative;
+        transition: transform 0.6s ease;
+        transform-style: preserve-3d;
+      }
+      .gwent-flip-container:hover .gwent-flip-inner {
+        transform: rotateY(180deg);
+      }
+      .gwent-flip-front, .gwent-flip-back {
+        backface-visibility: hidden;
+      }
+      .gwent-flip-back {
+        position: absolute;
+        inset: 0;
+        transform: rotateY(180deg);
+        background: linear-gradient(135deg, #1a1209 0%, #0d0a05 100%);
+        border: 2px solid var(--w3-gold-dim);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 1rem;
+      }
+      .gwent-flip-back svg {
+        opacity: 0.4;
+      }
+      .gwent-flip-back-label {
+        font-family: "Cinzel", serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--w3-gold-dim);
+      }
+
+      /* Mutagen slots */
+      .mutagen-slots {
+        display: flex;
+        gap: 6px;
+        margin-top: 4px;
+      }
+      .mutagen {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid rgba(255,255,255,0.15);
+        box-shadow: 0 0 4px currentColor;
+      }
+      .mutagen-red { background: radial-gradient(circle, #d44 40%, #811); color: #d44; }
+      .mutagen-green { background: radial-gradient(circle, #4a4 40%, #181); color: #4a4; }
+      .mutagen-blue { background: radial-gradient(circle, #48d 40%, #138); color: #48d; }
+
+      /* Death March badge */
+      .death-march {
+        font-family: "Cinzel", serif;
+        font-size: 0.55rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--w3-red);
+        border: 1px solid var(--w3-red);
+        padding: 2px 10px;
+        display: inline-block;
+        margin-top: 0.5rem;
+        opacity: 0.8;
+      }
+      .death-march::before { content: "☠ "; }
+
+      /* Quest completed notification */
+      #quest-notification {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        z-index: 1002;
+        background: rgba(10,8,4,0.95);
+        border: 2px solid var(--w3-gold);
+        padding: 1.5rem 3rem;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.5s ease;
+        box-shadow: 0 0 40px rgba(200,168,78,0.3);
+      }
+      #quest-notification.show {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      #quest-notification h3 {
+        font-family: "Cinzel", serif;
+        font-size: 1.5rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--w3-gold);
+        margin-bottom: 0.25rem;
+      }
+      #quest-notification p {
+        font-family: "EB Garamond", serif;
+        font-size: 1rem;
+        color: var(--w3-text-secondary);
+        font-style: italic;
+      }
+
+      /* Meditation clock */
+      .meditation-clock {
         display: inline-block;
         vertical-align: middle;
+        margin-left: 8px;
       }
-      .typed-text {
-        overflow: hidden; /* Ensures the content is not revealed until the animation */
-        border-right: 0.15em solid orange; /* The typwriter cursor */
-        white-space: nowrap; /* Keeps the content on a single line */
-        margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-        letter-spacing: 0.15em; /* Adjust as needed */
-        animation: typing 3.5s steps(40, end),
-          blink-caret 0.75s step-end infinite;
+      .meditation-clock svg {
+        animation: clock-rotate 60s linear infinite;
       }
-
-      /* The typing animation */
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
+      @keyframes clock-rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
       }
 
-      /* The typewriter cursor effect */
-      @keyframes blink-caret {
-        from,
-        to {
-          border-color: transparent;
-        }
-        50% {
-          border-color: orange;
-        }
-      }
-
-      /* Scroll Progress Bar */
-      #progressBar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 5px; /* Height of the progress bar */
-        background-color: #4299e1; /* Blue color */
-        z-index: 1000; /* Ensure it's on top */
-        transition: width 0.1s linear; /* Smooth width transition */
-      }
-
-      /* Sticky Header */
-      .sticky-header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(
-          18,
-          18,
-          18,
-          0.95
-        ); /* Darker, slightly transparent background */
-        padding: 1rem 0; /* Smaller padding when sticky */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-        transition: all 0.3s ease-in-out;
-        z-index: 990; /* Below progress bar, above content */
-      }
-      .sticky-header .container {
-        flex-direction: row !important; /* Keep horizontal */
-        justify-content: space-between;
+      /* Map nav */
+      .map-nav {
+        display: flex;
         align-items: center;
+        gap: 0;
+        position: relative;
+        padding: 8px 0;
       }
-      .sticky-header .text-5xl {
-        font-size: 2.5rem !important; /* Smaller title */
+      .map-nav-dot {
+        width: 16px; height: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--w3-gold-dim);
+        background: var(--w3-bg-darkest);
+        transition: all 0.3s;
+        position: relative;
+        z-index: 2;
+        flex-shrink: 0;
       }
-      .sticky-header .text-2xl,
-      .sticky-header .text-md {
-        display: none !important; /* Hide tagline and description */
+      .map-nav-dot:hover, .map-nav-dot.active {
+        background: var(--w3-gold);
+        border-color: var(--w3-gold-bright);
+        box-shadow: 0 0 12px var(--w3-glow-gold), 0 0 24px rgba(200,168,78,0.2);
+        transform: scale(1.3);
       }
-      .sticky-header .flex-shrink-0 {
-        display: none !important; /* Hide profile pic */
+      .map-nav-dot.active::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border-radius: 50%;
+        border: 1px solid var(--w3-gold-dim);
+        opacity: 0.4;
+        animation: map-ping 2s ease-out infinite;
       }
-      .sticky-header .p-6 {
-        padding: 0.5rem 1.5rem !important; /* Adjust nav padding */
+      @keyframes map-ping {
+        0% { transform: scale(1); opacity: 0.4; }
+        100% { transform: scale(1.8); opacity: 0; }
+      }
+      .map-nav-line {
+        height: 2px;
+        width: 40px;
+        background: linear-gradient(to right, var(--w3-gold-dim), var(--w3-border));
+        flex-shrink: 0;
+      }
+      .map-nav-label {
+        position: absolute;
+        top: 22px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Cinzel", serif;
+        font-size: 0.55rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--w3-gold-dim);
+        white-space: nowrap;
+        opacity: 0.7;
+        transition: all 0.3s;
+      }
+      .map-nav-dot:hover .map-nav-label,
+      .map-nav-dot.active .map-nav-label {
+        opacity: 1;
+        color: var(--w3-gold);
+      }
+
+      #ember-canvas {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        pointer-events: none; z-index: 1;
+      }
+
+      /* Particle toggle button */
+      #particle-toggle {
+        position: fixed;
+        bottom: 20px; right: 20px;
+        z-index: 1001;
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        background: var(--w3-bg-leather);
+        border: 1px solid var(--w3-border);
+        color: var(--w3-gold);
+        display: flex; align-items: center; justify-content: center;
+        transition: all 0.3s;
+        font-size: 1.2rem;
+      }
+      #particle-toggle:hover {
+        border-color: var(--w3-gold);
+        box-shadow: 0 0 12px var(--w3-glow-gold);
+      }
+      .particle-label {
+        position: absolute;
+        right: 52px; top: 50%;
+        transform: translateY(-50%);
+        font-family: "Cinzel", serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--w3-gold-dim);
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+      #particle-toggle:hover .particle-label { opacity: 1; }
+
+      /* Wolf medallion in hero */
+      .wolf-medallion {
+        transition: all 0.5s ease;
+        filter: drop-shadow(0 0 10px rgba(200,168,78,0.3));
+      }
+      .wolf-medallion:hover {
+        filter: drop-shadow(0 0 25px rgba(200,168,78,0.7));
+        transform: scale(1.05);
+      }
+
+      /* Mobile nav medallion toggle */
+      #mobile-nav-toggle {
+        display: none;
+        position: absolute;
+        top: 1rem; right: 1rem;
+        z-index: 25;
+        background: none;
+        border: none;
+        color: var(--w3-gold);
+      }
+      #mobile-nav-toggle svg {
+        transition: all 0.3s;
+        filter: drop-shadow(0 0 6px rgba(200,168,78,0.3));
+      }
+      #mobile-nav-toggle:hover svg {
+        filter: drop-shadow(0 0 12px rgba(200,168,78,0.6));
+      }
+      @media (max-width: 767px) {
+        #mobile-nav-toggle { display: block; }
+        #desktop-nav { display: none; }
+        #desktop-nav.mobile-open {
+          display: flex;
+          position: absolute;
+          top: 3.5rem; right: 1rem;
+          background: rgba(10,10,10,0.97);
+          border: 1px solid var(--w3-border);
+          padding: 1rem;
+          border-radius: 4px;
+          z-index: 25;
+        }
+        .gwent-board-row { flex-direction: column; }
+        .gwent-row-label { writing-mode: horizontal-tb; border-right: none; border-bottom: 1px solid var(--w3-border); min-width: auto; padding: 0.25rem 0; }
+        .gwent-row-score { border-right: none; border-bottom: 1px solid var(--w3-border); min-width: auto; padding: 0.25rem 0; }
       }
     </style>
   </head>
-  <body class="text-gray-800">
+  <body class="text-[#d4c5a0]">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div id="loading-medallion">
+        <svg width="80" height="80" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="45" stroke="#c8a84e" stroke-width="2" fill="none" opacity="0.3"/>
+          <circle cx="50" cy="50" r="38" stroke="#a08030" stroke-width="1" fill="none" opacity="0.2"/>
+          <path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="#c8a84e" stroke-width="1.5" fill="rgba(200,168,78,0.08)"/>
+          <circle cx="50" cy="44" r="6" stroke="#c8a84e" stroke-width="1" fill="none"/>
+          <path d="M44 44 Q47 38 50 44 Q53 38 56 44" stroke="#c8a84e" stroke-width="1" fill="none"/>
+          <path d="M42 50 L50 65 L58 50" stroke="#c8a84e" stroke-width="1" fill="none"/>
+          <line x1="50" y1="52" x2="50" y2="62" stroke="#c8a84e" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div id="loading-bar-track">
+        <div id="loading-bar-fill"></div>
+      </div>
+      <div id="loading-tip">"Winds howling... better check the deployment logs."</div>
+    </div>
+
     <div id="progressBar"></div>
+
+    <!-- Particle Toggle -->
+    <button id="particle-toggle" title="Toggle weather effect">
+      <span class="particle-label">Weather</span>
+      &#x1F525;
+    </button>
 
     <header
       id="mainHeader"
-      class="bg-gradient-to-r from-blue-800 to-indigo-900 text-white py-16 shadow-2xl relative overflow-hidden"
+      class="bg-[#121008] text-white py-16 shadow-2xl relative overflow-hidden hero-frame"
     >
+      <div class="hero-inner-border"></div>
+      <canvas id="ember-canvas"></canvas>
       <div
         class="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between z-10 relative"
       >
         <div class="text-center md:text-left mb-6 md:mb-0">
           <h1
-            class="text-6xl font-extrabold mb-3 leading-tight text-gradient text-shadow-light font-montserrat"
+            class="text-6xl font-extrabold mb-3 leading-tight text-gradient text-shadow-light font-cinzel-decorative"
           >
             Md. Morshed Jamal
           </h1>
-          <p class="text-2xl font-light text-blue-200 mb-4 tracking-wide">
-            <span class="typed-text-container"
-              ><span id="typed-tagline" class="typed-text"></span
-            ></span>
+          <p class="text-2xl font-light text-[#d4c5a0] mb-4 tracking-wide">
+            <span class="typed-text-container"><span id="typed-tagline" class="typed-text"></span></span>
           </p>
-          <p
-            class="text-lg mt-2 max-w-2xl mx-auto md:mx-0 text-gray-300 tracking-wide"
-          >
+          <p class="text-lg mt-2 max-w-2xl mx-auto md:mx-0 text-[#b0a080] tracking-wide">
             Building and deploying
             <span class="highlight-text">LLM-powered systems</span>,
             <span class="highlight-text">agentic AI copilots</span>, and
             <span class="highlight-text">production-grade RAG applications</span>
             for enterprise clients.
           </p>
+          <!-- Level Bar -->
+          <div class="level-bar-container">
+            <span class="level-badge">Level 28 Witcher</span>
+            <div class="level-bar-track">
+              <div class="level-bar-fill" id="level-bar" style="width:0%"></div>
+            </div>
+          </div>
+          <div class="death-march">Death March</div>
         </div>
-        <div class="flex-shrink-0 relative group">
+        <div class="flex-shrink-0 relative group flex flex-col items-center gap-4">
+          <!-- Wolf Medallion -->
+          <svg class="wolf-medallion" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" stroke="#c8a84e" stroke-width="2" fill="none"/>
+            <circle cx="50" cy="50" r="42" stroke="#a08030" stroke-width="1" fill="rgba(10,8,4,0.6)"/>
+            <path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="#c8a84e" stroke-width="1.5" fill="rgba(200,168,78,0.05)"/>
+            <circle cx="50" cy="44" r="6" stroke="#c8a84e" stroke-width="1.2" fill="none"/>
+            <path d="M44 44 Q47 37 50 44 Q53 37 56 44" stroke="#c8a84e" stroke-width="1" fill="none"/>
+            <path d="M42 50 L50 68 L58 50" stroke="#c8a84e" stroke-width="1.2" fill="none"/>
+            <line x1="50" y1="53" x2="50" y2="64" stroke="#c8a84e" stroke-width="0.8"/>
+            <path d="M35 35 L40 30 M65 35 L60 30" stroke="#c8a84e" stroke-width="0.8" opacity="0.5"/>
+          </svg>
           <img
             src="images/Untitled.jpg"
             alt="Profile Picture"
-            class="rounded-full border-4 border-blue-400 shadow-xl w-40 h-40 object-cover transform transition-transform duration-300 group-hover:scale-105 profile-pic-glow"
+            class="rounded-lg border-4 border-[#c8a84e] shadow-xl w-32 h-32 object-cover transform transition-transform duration-300 group-hover:scale-105 profile-pic-glow"
           />
-          <div
-            class="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-blue-600 transition-all duration-300"
-          ></div>
         </div>
       </div>
 
-      <nav class="absolute top-0 right-0 p-6 z-20">
-        <ul
-          class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-8"
-        >
-          <li>
-            <a
-              href="#about"
-              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
-              >About</a
-            >
-          </li>
-          <li>
-            <a
-              href="#experience"
-              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
-              >Experience</a
-            >
-          </li>
-          <li>
-            <a
-              href="#skills"
-              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
-              >Skills</a
-            >
-          </li>
-          <li>
-            <a
-              href="#projects"
-              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
-              >Projects</a
-            >
-          </li>
-          <li>
-            <a
-              href="#contact"
-              class="text-white hover:text-blue-300 text-lg font-semibold transition-all duration-300 transform hover:scale-105 nav-link-hover"
-              >Contact</a
-            >
-          </li>
-        </ul>
+      <!-- Mobile nav toggle (wolf medallion) -->
+      <button id="mobile-nav-toggle" onclick="document.getElementById('desktop-nav').classList.toggle('mobile-open')">
+        <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="40" stroke="#c8a84e" stroke-width="2" fill="rgba(10,8,4,0.8)"/>
+          <path d="M50 20 L55 33 L65 28 L60 38 L72 40 L62 46 L68 56 L57 52 L55 65 L50 55 L45 65 L43 52 L32 56 L38 46 L28 40 L40 38 L35 28 L45 33 Z" stroke="#c8a84e" stroke-width="1.2" fill="rgba(200,168,78,0.08)"/>
+        </svg>
+      </button>
+
+      <nav id="desktop-nav" class="absolute top-0 right-0 p-6 z-20">
+        <div class="map-nav">
+          <a href="#about" class="map-nav-dot" data-section="about"><span class="map-nav-label">About</span></a>
+          <div class="map-nav-line"></div>
+          <a href="#experience" class="map-nav-dot" data-section="experience"><span class="map-nav-label">Quests</span></a>
+          <div class="map-nav-line"></div>
+          <a href="#skills" class="map-nav-dot" data-section="skills"><span class="map-nav-label">Gwent</span></a>
+          <div class="map-nav-line"></div>
+          <a href="#projects" class="map-nav-dot" data-section="projects"><span class="map-nav-label">Contracts</span></a>
+          <div class="map-nav-line"></div>
+          <a href="#contact" class="map-nav-dot" data-section="contact"><span class="map-nav-label">Contact</span></a>
+        </div>
       </nav>
     </header>
 
+    <!-- ABOUT — Parchment Scroll -->
     <section
       id="about"
-      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+      class="py-20 parchment-scroll shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
     >
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold mb-10 text-center section-title">
+          <!-- Quen Sign -->
+          <svg class="witcher-sign" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="14" stroke="#c8a84e" stroke-width="1.5" fill="none"/>
+            <polygon points="16,4 27,22 5,22" stroke="#c8a84e" stroke-width="1.2" fill="none"/>
+            <circle cx="16" cy="16" r="5" stroke="#c8a84e" stroke-width="0.8" fill="none"/>
+          </svg>
           About Me
         </h2>
-        <div
-          class="text-xl leading-relaxed text-gray-300 text-center md:text-left tracking-wide"
-        >
-          <p class="mb-6">
-            <span class="highlight-text">Machine Learning Engineer</span> with
-            2 years of experience building and deploying LLM-powered systems,
-            <span class="highlight-text">agentic AI copilots</span>, and
-            production-grade
-            <span class="highlight-text">RAG applications</span>. Skilled in
-            end-to-end ML pipelines, multi-agent orchestration, and scalable
-            backend architecture across cloud, containerized, and edge
-            deployments.
-          </p>
-          <p class="mb-6">
-            Delivered enterprise AI solutions including a multimodal
-            agricultural intelligence platform, an
-            <span class="highlight-text">ERP copilot</span>, and a
-            <span class="highlight-text">multi-agent call center system</span>
-            at Shothik AI.
-          </p>
-          <p>
-            Holds a B.Sc. in Mechanical Engineering from
-            <span class="highlight-text">BUET</span> (2024) and completed
-            H.S.C from Notre Dame College (2018).
-          </p>
+        <div class="text-xl leading-relaxed text-[#b0a080] tracking-wide">
+          <div class="bestiary-field"><span class="bestiary-label">Class:</span><span class="bestiary-value"><span class="highlight-text">Machine Learning Engineer</span></span></div>
+          <div class="bestiary-field"><span class="bestiary-label">Habitat:</span><span class="bestiary-value">Shothik AI — Dhaka, Bangladesh</span></div>
+          <div class="bestiary-field"><span class="bestiary-label">Experience:</span><span class="bestiary-value">2+ years building LLM-powered systems, <span class="highlight-text">agentic AI copilots</span>, and production-grade <span class="highlight-text">RAG applications</span></span></div>
+          <div class="bestiary-field"><span class="bestiary-label">Strengths:</span><span class="bestiary-value">End-to-end ML pipelines, multi-agent orchestration, scalable backend architecture across cloud, containerized, and edge deployments</span></div>
+          <div class="bestiary-field"><span class="bestiary-label">Trophies:</span><span class="bestiary-value">Multimodal agricultural intelligence platform, <span class="highlight-text">ERP copilot</span>, <span class="highlight-text">multi-agent call center system</span></span></div>
+          <div class="bestiary-field"><span class="bestiary-label">Weakness:</span><span class="bestiary-value" style="font-style:italic;">Reportedly susceptible to well-documented APIs and clean codebases</span></div>
+          <div class="bestiary-field"><span class="bestiary-label">Origin:</span><span class="bestiary-value">B.Sc. Mechanical Engineering, <span class="highlight-text">BUET</span> (2024) &#x2022; H.S.C, Notre Dame College (2018)</span></div>
         </div>
       </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="divider">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L22 12L12 22L2 12Z" stroke="#c8a84e" stroke-width="1.5" fill="none"/><path d="M12 6L18 12L12 18L6 12Z" stroke="#a08030" stroke-width="0.8" fill="none"/></svg>
+    </div>
+
+    <!-- EXPERIENCE — Quest Log -->
     <section
       id="experience"
       class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
     >
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold mb-10 text-center section-title">
-          Experience
+          <!-- Igni Sign -->
+          <svg class="witcher-sign" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 4 L8 28 L16 20 L24 28 Z" stroke="#c8a84e" stroke-width="1.5" fill="none"/>
+            <line x1="16" y1="10" x2="16" y2="18" stroke="#c8a84e" stroke-width="0.8"/>
+          </svg>
+          Quest Log
         </h2>
         <div class="space-y-10">
-          <div
-            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
-          >
-            <h3
-              class="text-3xl font-semibold mb-3 text-blue-400 font-montserrat"
-            >
+          <div class="quest-entry p-8 rounded-lg shadow-xl card-hover">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+              <span class="quest-badge quest-badge-active">&#9733; Active Quest</span>
+              <span class="quest-xp">XP: 1 Year+</span>
+            </div>
+            <h3 class="text-3xl font-semibold mb-3 text-[#c8a84e] font-cinzel">
               Machine Learning Engineer
             </h3>
-            <p class="text-xl text-gray-200 mb-2">Shothik AI — Dhaka, Bangladesh</p>
-            <p class="text-md text-gray-400 mb-5">07/2024 – Present</p>
-            <ul class="list-disc list-inside text-gray-300 text-lg space-y-3">
-              <li>
-                Architected multi-agent AI systems using LangGraph, MCP, and GPT-4o for call center automation and workflow orchestration, replacing manual processes with end-to-end agentic pipelines.
-              </li>
-              <li>
-                Built an AI copilot for an ERP POS system, enabling natural-language inventory queries, sales analysis, and database operations through agentic orchestration with LangGraph and FastAPI.
-              </li>
-              <li>
-                Developed an AI-powered ATS analysis platform with Spring Boot and pgvector for semantic resume matching.
-              </li>
-              <li>
-                Built production-grade RAG pipelines and enterprise knowledge retrieval platforms with FastAPI, FAISS, and OpenAI embeddings, serving multiple enterprise clients.
-              </li>
-              <li>
-                Delivered an AI-powered Inception Report Generator combining Gemini 2.5 Flash (Vision), Google Maps API, and Google ADK for multimodal route computation, document enrichment, and automated reporting.
-              </li>
+            <p class="text-xl text-[#d4c5a0] mb-2">Shothik AI — Dhaka, Bangladesh</p>
+            <p class="text-md text-[#b0a080] mb-5">07/2024 – Present</p>
+            <ul class="list-none text-[#b0a080] text-lg space-y-3">
+              <li>&#9876; Architected multi-agent AI systems using LangGraph, MCP, and GPT-4o for call center automation and workflow orchestration, replacing manual processes with end-to-end agentic pipelines.</li>
+              <li>&#9876; Built an AI copilot for an ERP POS system, enabling natural-language inventory queries, sales analysis, and database operations through agentic orchestration with LangGraph and FastAPI.</li>
+              <li>&#9876; Developed an AI-powered ATS analysis platform with Spring Boot and pgvector for semantic resume matching.</li>
+              <li>&#9876; Built production-grade RAG pipelines and enterprise knowledge retrieval platforms with FastAPI, FAISS, and OpenAI embeddings, serving multiple enterprise clients.</li>
+              <li>&#9876; Delivered an AI-powered Inception Report Generator combining Gemini 2.5 Flash (Vision), Google Maps API, and Google ADK for multimodal route computation, document enrichment, and automated reporting.</li>
             </ul>
           </div>
-          <div
-            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
-          >
-            <h3
-              class="text-3xl font-semibold mb-3 text-blue-400 font-montserrat"
-            >
+          <div class="quest-entry p-8 rounded-lg shadow-xl card-hover">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+              <span class="quest-badge quest-badge-complete">&#10003; Contract Completed</span>
+              <span class="quest-xp">XP: 5 Years</span>
+            </div>
+            <h3 class="text-3xl font-semibold mb-3 text-[#c8a84e] font-cinzel">
               Software Sub-team Member
             </h3>
-            <p class="text-xl text-gray-200 mb-2">Team Interplaneter, BUET</p>
-            <p class="text-md text-gray-400 mb-5">01/2019 – 06/2024</p>
-            <ul class="list-disc list-inside text-gray-300 text-lg space-y-3">
-              <li>
-                Built real-time object and ArUco marker detection pipelines using OpenCV for autonomous robot localization on NVIDIA Jetson Xavier NX.
-              </li>
-              <li>
-                Deployed ROS-based navigation and robotic arm control integrated with perception models for competition-ready autonomous systems.
-              </li>
+            <p class="text-xl text-[#d4c5a0] mb-2">Team Interplaneter, BUET</p>
+            <p class="text-md text-[#b0a080] mb-5">01/2019 – 06/2024</p>
+            <ul class="list-none text-[#b0a080] text-lg space-y-3">
+              <li>&#9876; Built real-time object and ArUco marker detection pipelines using OpenCV for autonomous robot localization on NVIDIA Jetson Xavier NX.</li>
+              <li>&#9876; Deployed ROS-based navigation and robotic arm control integrated with perception models for competition-ready autonomous systems.</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="divider">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L22 12L12 22L2 12Z" stroke="#c8a84e" stroke-width="1.5" fill="none"/><path d="M12 6L18 12L12 18L6 12Z" stroke="#a08030" stroke-width="0.8" fill="none"/></svg>
+    </div>
+
+    <!-- SKILLS — Gwent Board -->
     <section
       id="skills"
-      class="py-20 bg-card shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+      class="py-20 shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
+      style="background-color: var(--w3-bg-card);"
     >
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold mb-10 text-center section-title">
-          Skills
+          <!-- Axii Sign -->
+          <svg class="witcher-sign" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="14" stroke="#c8a84e" stroke-width="1.5" fill="none"/>
+            <path d="M16 6 L16 26 M10 10 L22 22 M22 10 L10 22" stroke="#c8a84e" stroke-width="1" opacity="0.7"/>
+            <circle cx="16" cy="16" r="4" stroke="#c8a84e" stroke-width="1" fill="none"/>
+          </svg>
+          Gwent Deck
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
-            <h3
-              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
-            >
-              Programming Languages
-            </h3>
-            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
-              <li>Python</li>
-              <li>Java</li>
-              <li>Golang</li>
-              <li>C++</li>
-              <li>SQL</li>
-            </ul>
+
+        <div class="gwent-board rounded-lg">
+          <!-- Melee Row -->
+          <div class="gwent-board-row">
+            <div class="gwent-row-label">Melee</div>
+            <div class="gwent-row-score">10</div>
+            <div class="gwent-board-cards">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-nilfgaard" style="flex:1; min-width:200px;">
+                <div class="gwent-strength">
+                  <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#c8a84e" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
+                  <span>5</span>
+                </div>
+                <div class="gwent-row">Melee</div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">Programming Languages</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-green"></span></div>
+                <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
+                  <li class="skill-item">&#9830; Python<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">Python</div><div class="tooltip-type">Legendary Weapon</div><div class="tooltip-sep"></div><div class="tooltip-desc">"A blade forged in gradient descent. Versatile, deadly, and suspiciously easy to wield."</div></div></li>
+                  <li class="skill-item">&#9830; Java<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">Java</div><div class="tooltip-type">Epic Armor</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Heavy but reliable. Protects against enterprise-grade threats."</div></div></li>
+                  <li class="skill-item">&#9830; Golang<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">Golang</div><div class="tooltip-type">Rare Relic</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Concurrent by nature. Compiles faster than a Roach sprint."</div></div></li>
+                  <li class="skill-item">&#9830; C++<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">C++</div><div class="tooltip-type">Epic Weapon</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Unmatched raw power. Handle with care — memory leaks are its only weakness."</div></div></li>
+                  <li class="skill-item">&#9830; SQL<div class="tooltip"><div class="tooltip-name tooltip-rarity-common">SQL</div><div class="tooltip-type">Common Tool</div><div class="tooltip-sep"></div><div class="tooltip-desc">"The universal tongue of data. SELECT * FROM knowledge."</div></div></li>
+                </ul>
+              </div>
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-northern" style="flex:1; min-width:200px;">
+                <div class="gwent-strength">
+                  <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#4a6a9a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
+                  <span>5</span>
+                </div>
+                <div class="gwent-row">Melee</div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">Backend & Data</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-blue"></span><span class="mutagen mutagen-green"></span><span class="mutagen mutagen-blue"></span></div>
+                <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
+                  <li class="skill-item">&#9830; FastAPI / Spring Boot<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">FastAPI / Spring Boot</div><div class="tooltip-type">Legendary Framework</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Twin blades — one swift, one enterprise. Both lethal."</div></div></li>
+                  <li class="skill-item">&#9830; PostgreSQL (pgvector)<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">PostgreSQL</div><div class="tooltip-type">Epic Relic</div><div class="tooltip-sep"></div><div class="tooltip-desc">"The elephant never forgets. Now with vector-enhanced memory."</div></div></li>
+                  <li class="skill-item">&#9830; MongoDB / Neo4j<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">MongoDB / Neo4j</div><div class="tooltip-type">Rare Artifacts</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Documents and graphs — for when tables aren't enough."</div></div></li>
+                  <li class="skill-item">&#9830; FAISS / ChromaDB<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">FAISS / ChromaDB</div><div class="tooltip-type">Epic Tool</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Vector search engines. Find the needle in a million haystacks."</div></div></li>
+                  <li class="skill-item">&#9830; Redis<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">Redis</div><div class="tooltip-type">Rare Potion</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Lightning-fast cache. One sip and your latency vanishes."</div></div></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
-            <h3
-              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
-            >
-              ML/AI & Agents
-            </h3>
-            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
-              <li>PyTorch</li>
-              <li>TensorFlow</li>
-              <li>Scikit-learn</li>
-              <li>Hugging Face</li>
-              <li>OpenCV / YOLO</li>
-              <li>LangChain / LangGraph</li>
-              <li>CrewAI</li>
-              <li>Google ADK</li>
-              <li>OpenAI SDK</li>
-            </ul>
+          <!-- Ranged Row -->
+          <div class="gwent-board-row">
+            <div class="gwent-row-label">Ranged</div>
+            <div class="gwent-row-score">10</div>
+            <div class="gwent-board-cards">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-skellige" style="flex:1; min-width:200px;">
+                <div class="gwent-strength">
+                  <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#3a6b8a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
+                  <span>7</span>
+                </div>
+                <div class="gwent-row">Ranged</div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">MLOps & Infrastructure</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-blue"></span><span class="mutagen mutagen-blue"></span><span class="mutagen mutagen-green"></span></div>
+                <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
+                  <li class="skill-item">&#9830; Docker / Kubernetes<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">Docker / Kubernetes</div><div class="tooltip-type">Legendary Armor Set</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Containerized fortress. Scales to any battle size."</div></div></li>
+                  <li class="skill-item">&#9830; MLflow<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">MLflow</div><div class="tooltip-type">Rare Tracking Tool</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Tracks every experiment. A Witcher's journal for models."</div></div></li>
+                  <li class="skill-item">&#9830; Airflow<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">Airflow</div><div class="tooltip-type">Epic Orchestrator</div><div class="tooltip-sep"></div><div class="tooltip-desc">"DAG-driven pipelines. Wind magic for data workflows."</div></div></li>
+                  <li>&#9830; DVC</li><li>&#9830; GitHub Actions</li><li>&#9830; Terraform</li><li>&#9830; Prometheus / Grafana</li>
+                </ul>
+              </div>
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-scoiatael" style="flex:1; min-width:200px;">
+                <div class="gwent-strength">
+                  <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#2d6a3e" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
+                  <span>3</span>
+                </div>
+                <div class="gwent-row">Ranged</div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">Cloud Platforms</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-green"></span><span class="mutagen mutagen-green"></span><span class="mutagen mutagen-green"></span></div>
+                <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
+                  <li class="skill-item">&#9830; AWS (SageMaker)<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">AWS SageMaker</div><div class="tooltip-type">Legendary Cloud</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Amazon's conjuring circle. Deploy models at continental scale."</div></div></li>
+                  <li class="skill-item">&#9830; Azure (Azure ML)<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">Azure ML</div><div class="tooltip-type">Epic Cloud</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Microsoft's realm. Enterprise-grade sorcery."</div></div></li>
+                  <li class="skill-item">&#9830; GCP (Vertex AI)<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">Vertex AI</div><div class="tooltip-type">Epic Cloud</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Google's domain. Where Gemini roams free."</div></div></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
-            <h3
-              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
-            >
-              MLOps & Infrastructure
-            </h3>
-            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
-              <li>Docker / Kubernetes</li>
-              <li>MLflow</li>
-              <li>Airflow</li>
-              <li>DVC</li>
-              <li>GitHub Actions</li>
-              <li>Terraform</li>
-              <li>Prometheus / Grafana</li>
-            </ul>
+          <!-- Siege Row -->
+          <div class="gwent-board-row">
+            <div class="gwent-row-label">Siege</div>
+            <div class="gwent-row-score">9</div>
+            <div class="gwent-board-cards">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-monsters" style="flex:1; min-width:200px;">
+                <div class="gwent-strength">
+                  <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#8b1a1a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
+                  <span>9</span>
+                </div>
+                <div class="gwent-row">Siege</div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">ML/AI & Agents</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span></div>
+                <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
+                  <li class="skill-item">&#9830; PyTorch<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">PyTorch</div><div class="tooltip-type">Legendary Relic</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Dynamic computation. The Witcher's silver sword of deep learning."</div></div></li>
+                  <li class="skill-item">&#9830; TensorFlow<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">TensorFlow</div><div class="tooltip-type">Epic Weapon</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Google's steel. Heavy but battle-tested."</div></div></li>
+                  <li class="skill-item">&#9830; Scikit-learn<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">Scikit-learn</div><div class="tooltip-type">Rare Tool</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Classical ML in a flask. Simple yet effective."</div></div></li>
+                  <li class="skill-item">&#9830; Hugging Face<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">Hugging Face</div><div class="tooltip-type">Legendary Artifact</div><div class="tooltip-sep"></div><div class="tooltip-desc">"The model hub. Thousands of pre-trained beasts at your command."</div></div></li>
+                  <li class="skill-item">&#9830; OpenCV / YOLO<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">OpenCV / YOLO</div><div class="tooltip-type">Epic Vision</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Cat eyes for machines. You Only Look Once — make it count."</div></div></li>
+                  <li class="skill-item">&#9830; LangChain / LangGraph<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">LangChain / LangGraph</div><div class="tooltip-type">Legendary Framework</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Chain spells together. Graph-based orchestration for agentic sorcery."</div></div></li>
+                  <li class="skill-item">&#9830; CrewAI<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">CrewAI</div><div class="tooltip-type">Epic Summon</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Command a crew of AI agents. Each with their own role and purpose."</div></div></li>
+                  <li class="skill-item">&#9830; Google ADK<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">Google ADK</div><div class="tooltip-type">Rare Kit</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Agent Development Kit. Google's recipe for agentic AI."</div></div></li>
+                  <li class="skill-item">&#9830; OpenAI SDK<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">OpenAI SDK</div><div class="tooltip-type">Legendary Gateway</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Access to GPT. The most powerful conjuration in the Continent."</div></div></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
-            <h3
-              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
-            >
-              Cloud Platforms
-            </h3>
-            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
-              <li>AWS (SageMaker)</li>
-              <li>Azure (Azure ML)</li>
-              <li>GCP (Vertex AI)</li>
-            </ul>
-          </div>
-          <div class="bg-section-alt p-8 rounded-lg shadow-xl card-hover">
-            <h3
-              class="text-3xl font-semibold mb-5 text-blue-400 font-montserrat"
-            >
-              Backend & Data
-            </h3>
-            <ul class="list-disc list-inside text-gray-300 text-xl space-y-3">
-              <li>FastAPI / Spring Boot</li>
-              <li>PostgreSQL (pgvector)</li>
-              <li>MongoDB / Neo4j</li>
-              <li>FAISS / ChromaDB</li>
-              <li>Redis</li>
-            </ul>
+          <div class="gwent-board-total">
+            Total Strength: 29
           </div>
         </div>
       </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="divider">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L22 12L12 22L2 12Z" stroke="#c8a84e" stroke-width="1.5" fill="none"/><path d="M12 6L18 12L12 18L6 12Z" stroke="#a08030" stroke-width="0.8" fill="none"/></svg>
+    </div>
+
+    <!-- PROJECTS — Contract Board -->
     <section
       id="projects"
       class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 animated-section"
     >
       <div class="container mx-auto">
         <h2 class="text-4xl font-bold mb-10 text-center section-title">
-          Projects
+          <!-- Aard Sign -->
+          <svg class="witcher-sign" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,2 30,26 2,26" stroke="#c8a84e" stroke-width="1.5" fill="none"/>
+            <line x1="16" y1="10" x2="16" y2="20" stroke="#c8a84e" stroke-width="1"/>
+            <line x1="12" y1="20" x2="20" y2="20" stroke="#c8a84e" stroke-width="0.8"/>
+          </svg>
+          Witcher Contracts
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-          <div
-            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
-          >
-            <h3
-              class="text-2xl font-semibold mb-2 text-gray-100 font-montserrat"
-            >
-              Famous Face Detector
-            </h3>
-            <p class="text-sm text-blue-400 mb-4">Python, OpenCV, Flask, Groq LLM API, Docker, Kubernetes</p>
-            <ul class="text-gray-300 mb-6 text-lg space-y-2 list-disc list-inside">
-              <li>Built a real-time celebrity recognition system using OpenCV Haar Cascade for face detection and Groq LLM API for identity matching and structured biography generation.</li>
-              <li>Added an interactive Q&A module for follow-up questions about detected individuals via LLM-powered reasoning. Containerized with Docker and Kubernetes for scalable deployment.</li>
-            </ul>
-            <a
-              href="https://github.com/1morshed1/famous-face-detector"
-              target="_blank"
-              class="inline-block btn-primary text-white px-6 py-3 rounded-full text-md font-semibold"
-              >View on GitHub</a
-            >
+        <div class="contract-board rounded-lg">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+            <!-- Enterprise Contract 1: Multi-Agent Call Center -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">Multi-Agent AI Call Center</h3>
+              <p class="text-sm text-[#a08030] mb-4">LangGraph, LangChain, Twilio, Wit.ai, EdgeTTS, Google Translate, MongoDB</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Architected multi-agent system handling inbound/outbound calls via Twilio, orchestrating LangGraph agents for conversation management, order processing, and tracking.</li>
+                <li>&#9876; Integrated STT (Wit.ai), Bangla&#8596;English translation, EdgeTTS voice synthesis, and MongoDB for real-time customer data persistence.</li>
+              </ul>
+            </div>
+
+            <!-- Enterprise Contract 2: ERP AI Copilot -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">ERP AI Copilot Platform</h3>
+              <p class="text-sm text-[#a08030] mb-4">Django, React, LangChain, GPT-4o, PostgreSQL, Redis, GrapesJS, Docker</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Built production multi-agent copilot with 15+ domain agents, 55+ tools, and supervisor-to-specialist orchestration over WebSocket.</li>
+                <li>&#9876; Implemented human-in-the-loop approval for write operations, GPT-4o quote-to-proposal pipeline, and per-org knowledge base guardrails.</li>
+              </ul>
+            </div>
+
+            <!-- Enterprise Contract 3: Agricultural Intelligence -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">Agricultural Intelligence Platform</h3>
+              <p class="text-sm text-[#a08030] mb-4">Flutter, Gemini 3.1, FastAPI, RAG Architecture</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Developed multimodal AI platforms for poultry and aquaculture with Flutter cross-platform frontends and RAG-powered advisory systems.</li>
+                <li>&#9876; Integrated health diagnostics, water quality analysis, production tracking, and real-time decision support for farmers.</li>
+              </ul>
+            </div>
+
+            <!-- Enterprise Contract 4: Nonprofit Donation Platform -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">Nonprofit Donation Platform</h3>
+              <p class="text-sm text-[#a08030] mb-4">Supabase, Stripe Connect, PostgreSQL, Resend, Zod</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Built complete backend: 25 Edge Functions, 24-table schema with RLS, Stripe destination charges with 3-mode fee calculation, and PDF tax receipt generation.</li>
+                <li>&#9876; Implemented Haversine geo-search, donor anonymization, idempotent webhook processing, and 102+ integration tests.</li>
+              </ul>
+            </div>
+
+            <!-- Enterprise Contract 5: AI Electrician Platform -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">AI Electrician Platform</h3>
+              <p class="text-sm text-[#a08030] mb-4">Go, Next.js 15, PostgreSQL (pgvector), Redis, MinIO, Gemini, React Flow, Docker</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Built 6 AI modules: fault diagnosis, wiring diagram generation via React Flow, inspection checklists, BNBC/BS/IEC compliance checking, BoQ estimation, and WebSocket AI chat.</li>
+                <li>&#9876; PWA support, JWT auth with token rotation, structured AI prompt pipelines producing domain-specific JSON outputs (~10K lines total).</li>
+              </ul>
+            </div>
+
+            <!-- Enterprise Contract 6: Trade Management Platform -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">Multi-Tenant Trade Management</h3>
+              <p class="text-sm text-[#a08030] mb-4">Go (Gin), Next.js 16, PostgreSQL/GORM, Gemini 3.5 Flash, shadcn/ui, Docker</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Full-stack ERP with real-time dashboards (Recharts), inventory management, order lifecycle tracking, PDF invoice generation with VAT/BDT formatting.</li>
+                <li>&#9876; Gemini-powered AI chat for business insights, multi-tenant data isolation, bilingual i18n, JWT auth, CSV export, dark mode.</li>
+              </ul>
+            </div>
+
+            <!-- Personal Project: Famous Face Detector -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Personal Contract &#8212; Difficulty: &#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">Famous Face Detector</h3>
+              <p class="text-sm text-[#a08030] mb-4">Python, OpenCV, Flask, Groq LLM API, Docker, Kubernetes</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Real-time celebrity recognition using OpenCV Haar Cascade + Groq LLM API for identity matching and biography generation.</li>
+                <li>&#9876; Interactive Q&A module. Containerized with Docker and Kubernetes.</li>
+              </ul>
+              <a href="https://github.com/1morshed1/famous-face-detector" target="_blank" class="inline-block btn-primary text-[#c8a84e] px-6 py-3 rounded-sm text-md font-semibold">Take Contract</a>
+            </div>
+
+            <!-- Personal Project: Healthcare RAG -->
+            <div class="contract-card p-8 rounded-lg">
+              <div class="wax-seal">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+              </div>
+              <div style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--w3-gold-dim); margin-bottom:0.75rem; opacity:0.7;">Personal Contract &#8212; Difficulty: &#9733;&#9733;&#9733;&#9733;</div>
+              <h3 class="text-2xl font-semibold mb-2 text-[#f0e6c8] font-cinzel">Healthcare RAG Assistant</h3>
+              <p class="text-sm text-[#a08030] mb-4">Python, FastAPI, FAISS, Sentence-Transformers, MarianMT, Docker, GitHub Actions</p>
+              <ul class="text-[#b0a080] mb-6 text-base space-y-2 list-none">
+                <li>&#9876; Multilingual healthcare RAG system optimized for CPU-only low-memory deployments.</li>
+                <li>&#9876; CI/CD via GitHub Actions with automated testing, security scanning, and multi-stage Docker builds.</li>
+              </ul>
+              <a href="https://github.com/1morshed1/Medi-RAG-Chatbot" target="_blank" class="inline-block btn-primary text-[#c8a84e] px-6 py-3 rounded-sm text-md font-semibold">Take Contract</a>
+            </div>
+
           </div>
-          <div
-            class="bg-card p-8 rounded-lg shadow-xl card-hover border border-gray-700"
-          >
-            <h3
-              class="text-2xl font-semibold mb-2 text-gray-100 font-montserrat"
-            >
-              Healthcare RAG Assistant
-            </h3>
-            <p class="text-sm text-blue-400 mb-4">Python, FastAPI, FAISS, Sentence-Transformers, MarianMT, Docker, GitHub Actions</p>
-            <ul class="text-gray-300 mb-6 text-lg space-y-2 list-disc list-inside">
-              <li>Built a multilingual healthcare RAG system with FastAPI, FAISS, and Sentence-Transformers, optimized for CPU-only low-memory deployments with persistent indexing and structured JSON logging.</li>
-              <li>Implemented CI/CD via GitHub Actions with automated testing, security scanning, and multi-stage Docker builds with health checks.</li>
-            </ul>
+          <div class="text-center mt-10">
             <a
-              href="https://github.com/1morshed1/Medi-RAG-Chatbot"
+              href="https://github.com/1morshed1?tab=repositories"
               target="_blank"
-              class="inline-block btn-primary text-white px-6 py-3 rounded-full text-md font-semibold"
-              >View on GitHub</a
-            >
+              class="inline-block btn-secondary text-[#d4c5a0] px-10 py-4 rounded-sm text-xl font-bold"
+            >View All Contracts</a>
           </div>
-        </div>
-        <div class="text-center mt-16">
-          <a
-            href="https://github.com/1morshed1?tab=repositories"
-            target="_blank"
-            class="inline-block btn-secondary text-white px-10 py-4 rounded-full text-xl font-bold"
-            >View All Projects on GitHub</a
-          >
         </div>
       </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="divider">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L22 12L12 22L2 12Z" stroke="#c8a84e" stroke-width="1.5" fill="none"/><path d="M12 6L18 12L12 18L6 12Z" stroke="#a08030" stroke-width="0.8" fill="none"/></svg>
+    </div>
 
+    <!-- CONTACT -->
     <section
       id="contact"
       class="py-20 bg-section-alt shadow-lg rounded-lg mx-auto max-w-6xl mt-12 px-8 mb-12 animated-section"
     >
       <div class="container mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-10 section-title">Get In Touch</h2>
-        <p class="text-xl text-gray-300 mb-10 tracking-wide">
-          I'm always open to new opportunities and exciting collaborations. Feel
-          free to connect with me!
+        <h2 class="text-4xl font-bold mb-10 section-title">
+          <!-- Yrden Sign -->
+          <svg class="witcher-sign" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="14" stroke="#c8a84e" stroke-width="1.5" fill="none"/>
+            <polygon points="16,6 24,24 8,24" stroke="#c8a84e" stroke-width="1" fill="none"/>
+            <polygon points="16,24 8,10 24,10" stroke="#c8a84e" stroke-width="1" fill="none"/>
+          </svg>
+          Get In Touch
+        </h2>
+        <p class="text-xl text-[#b0a080] mb-10 tracking-wide">
+          I'm always open to new opportunities and exciting collaborations. Feel free to connect with me!
         </p>
         <div class="flex justify-center space-x-8">
-          <a
-            href="https://github.com/1morshed1"
-            target="_blank"
-            class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
-          >
-            <svg
-              class="w-10 h-10 mb-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.47.087.68-.205.68-.456 0-.227-.007-.785-.011-1.536-2.77.602-3.354-1.335-3.354-1.335-.453-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.003.07 1.532 1.03 1.532 1.03.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.336-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.391-1.996 1.03-2.705-.103-.255-.446-1.285.098-2.67 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.385.202 2.415.099 2.67.64.709 1.029 1.609 1.029 2.705 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.855 0 1.336-.012 2.419-.012 2.747 0 .252.21.547.685.449C20.145 20.183 23 16.426 23 12.017 23 6.484 18.522 2 13 2h-1z"
-                clip-rule="evenodd"
-              />
+          <a href="https://github.com/1morshed1" target="_blank"
+            class="text-[#b0a080] hover:text-[#c8a84e] transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover">
+            <svg class="w-10 h-10 mb-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.47.087.68-.205.68-.456 0-.227-.007-.785-.011-1.536-2.77.602-3.354-1.335-3.354-1.335-.453-1.152-1.107-1.458-1.107-1.458-.908-.618.069-.606.069-.606 1.003.07 1.532 1.03 1.532 1.03.892 1.529 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.336-2.22-.253-4.555-1.113-4.555-4.953 0-1.096.391-1.996 1.03-2.705-.103-.255-.446-1.285.098-2.67 0 0 .84-.27 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.025 2.747-1.025.546 1.385.202 2.415.099 2.67.64.709 1.029 1.609 1.029 2.705 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.855 0 1.336-.012 2.419-.012 2.747 0 .252.21.547.685.449C20.145 20.183 23 16.426 23 12.017 23 6.484 18.522 2 13 2h-1z" clip-rule="evenodd"/>
             </svg>
             <span>GitHub</span>
           </a>
-          <a
-            href="mailto:morshedfahim87@gmail.com"
-            class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
-          >
-            <svg
-              class="w-10 h-10 mb-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67L12 13.5 1.5 8.67zM19.5 3h-15A3 3 0 001.5 6.5V7l10.5 4.83L22.5 7V6.5a3 3 0 00-3-3z"
-              />
+          <a href="mailto:morshedfahim87@gmail.com"
+            class="text-[#b0a080] hover:text-[#c8a84e] transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover">
+            <svg class="w-10 h-10 mb-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67L12 13.5 1.5 8.67zM19.5 3h-15A3 3 0 001.5 6.5V7l10.5 4.83L22.5 7V6.5a3 3 0 00-3-3z"/>
             </svg>
             <span>Email</span>
           </a>
-          <a
-            href="https://www.linkedin.com/in/morshed-jamal-a2ab66170/"
-            target="_blank"
-            class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover"
-          >
-            <svg
-              class="w-10 h-10 mb-2"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.75c0-1.17-.9-2.12-2.07-2.12-.86 0-1.43.58-1.66 1.14V19h-3v-9h2.97v1.27c.4-.64 1.05-1.27 2.4-1.27 2.4 0 4.03 1.57 4.03 4.9V19z"
-              />
+          <a href="https://www.linkedin.com/in/morshed-jamal-a2ab66170/" target="_blank"
+            class="text-[#b0a080] hover:text-[#c8a84e] transition-all duration-300 flex flex-col items-center text-xl transform hover:scale-110 social-icon-hover">
+            <svg class="w-10 h-10 mb-2" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3v9zM6.5 8.25A1.75 1.75 0 118.25 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.75c0-1.17-.9-2.12-2.07-2.12-.86 0-1.43.58-1.66 1.14V19h-3v-9h2.97v1.27c.4-.64 1.05-1.27 2.4-1.27 2.4 0 4.03 1.57 4.03 4.9V19z"/>
             </svg>
             <span>LinkedIn</span>
           </a>
@@ -731,19 +1468,62 @@
       </div>
     </section>
 
+    <!-- Quest Completed Notification -->
+    <div id="quest-notification">
+      <h3>Quest Completed</h3>
+      <p id="quest-notification-text">The Path continues...</p>
+    </div>
+
     <footer
-      class="bg-gray-900 text-gray-400 py-8 text-center rounded-t-lg shadow-inner"
+      class="bg-[#0a0a0a] text-[#b0a080] py-8 text-center rounded-t-lg shadow-inner border-t border-[#3d2e1a]"
+      style="font-family: 'Cinzel', serif;"
     >
       <div class="container mx-auto px-6">
-        <p class="text-md">
-          &copy; 2025 Md. Morshed Jamal. All rights reserved.
+        <p class="text-md">&copy; 2025 Md. Morshed Jamal. All rights reserved.</p>
+        <p class="text-sm mt-2 opacity-60">Forged in the fires of Kaer Morhen
+          <span class="meditation-clock">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#c8a84e" stroke-width="1" fill="none" opacity="0.4"/>
+              <line x1="12" y1="12" x2="12" y2="5" stroke="#c8a84e" stroke-width="1" opacity="0.6"/>
+              <line x1="12" y1="12" x2="17" y2="12" stroke="#c8a84e" stroke-width="0.7" opacity="0.4"/>
+              <circle cx="12" cy="4" r="2" fill="#c8a84e" opacity="0.5"/>
+            </svg>
+          </span>
         </p>
-        <p class="text-sm mt-2">Designed and developed with ❤️</p>
       </div>
     </footer>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        // --- Loading Screen ---
+        const tips = [
+          '"Winds howling... better check the deployment logs."',
+          '"How do you like that silver? — said no one about SQL queries."',
+          '"Damn, you\'re ugly." — Every developer looking at legacy code.',
+          '"Evil is evil. Lesser, greater, middling. Makes no difference. The degree is arbitrary. The definition\'s blurred." — On technical debt.',
+          '"Place of power. Gotta be." — Found a well-documented API.',
+          '"What now, you piece of filth?" — Debugging at 3 AM.',
+        ];
+        const loadingTip = document.getElementById("loading-tip");
+        loadingTip.textContent = tips[Math.floor(Math.random() * tips.length)];
+
+        const loadingBar = document.getElementById("loading-bar-fill");
+        let loadProgress = 0;
+        const loadInterval = setInterval(() => {
+          loadProgress += Math.random() * 25 + 10;
+          if (loadProgress >= 100) {
+            loadProgress = 100;
+            clearInterval(loadInterval);
+            setTimeout(() => {
+              document.getElementById("loading-screen").classList.add("fade-out");
+              setTimeout(() => {
+                document.getElementById("loading-screen").style.display = "none";
+              }, 800);
+            }, 400);
+          }
+          loadingBar.style.width = loadProgress + "%";
+        }, 300);
+
         // --- Typed Text Effect ---
         const taglineElement = document.getElementById("typed-tagline");
         const taglines = [
@@ -754,98 +1534,214 @@
         let taglineIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
-        let typingSpeed = 100; // ms per character
-        let deletingSpeed = 50; // ms per character
-        let delayBetweenTaglines = 1500; // ms
 
         function typeWriter() {
           const currentTagline = taglines[taglineIndex];
           if (isDeleting) {
-            taglineElement.textContent = currentTagline.substring(
-              0,
-              charIndex - 1
-            );
+            taglineElement.textContent = currentTagline.substring(0, charIndex - 1);
             charIndex--;
           } else {
-            taglineElement.textContent = currentTagline.substring(
-              0,
-              charIndex + 1
-            );
+            taglineElement.textContent = currentTagline.substring(0, charIndex + 1);
             charIndex++;
           }
-
-          let currentTypingSpeed = typingSpeed;
-          if (isDeleting) {
-            currentTypingSpeed = deletingSpeed;
-          } else if (charIndex === currentTagline.length) {
-            currentTypingSpeed = delayBetweenTaglines;
-            isDeleting = true;
-          } else if (charIndex === 0 && isDeleting) {
-            isDeleting = false;
-            taglineIndex = (taglineIndex + 1) % taglines.length;
-            currentTypingSpeed = typingSpeed;
-          }
-
-          setTimeout(typeWriter, currentTypingSpeed);
+          let speed = 100;
+          if (isDeleting) speed = 50;
+          else if (charIndex === currentTagline.length) { speed = 1500; isDeleting = true; }
+          else if (charIndex === 0 && isDeleting) { isDeleting = false; taglineIndex = (taglineIndex + 1) % taglines.length; speed = 100; }
+          setTimeout(typeWriter, speed);
         }
-        typeWriter(); // Start the typing effect
+        typeWriter();
 
-        // --- Scroll Progress Indicator ---
+        // --- Scroll Progress ---
         const progressBar = document.getElementById("progressBar");
         window.addEventListener("scroll", () => {
-          const totalHeight =
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
-          const scrolled = window.scrollY;
-          const progress = (scrolled / totalHeight) * 100;
-          progressBar.style.width = progress + "%";
+          const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          progressBar.style.width = (window.scrollY / total * 100) + "%";
         });
 
-        // --- Section Reveal Animations ---
-        const animatedSections = document.querySelectorAll(".animated-section");
-        const observerOptions = {
-          root: null, // viewport
-          rootMargin: "0px",
-          threshold: 0.1, // Trigger when 10% of the element is visible
-        };
+        // --- Section Reveal ---
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("is-visible"); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll(".animated-section").forEach(s => observer.observe(s));
 
-        const observer = new IntersectionObserver((entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target); // Stop observing once visible
+        // --- Level Bar Animation ---
+        setTimeout(() => {
+          const lb = document.getElementById("level-bar");
+          if (lb) lb.style.width = "72%";
+        }, 1500);
+
+        // --- Map Nav Active State ---
+        const mapDots = document.querySelectorAll(".map-nav-dot");
+        const sectionIds = ["about","experience","skills","projects","contact"];
+        window.addEventListener("scroll", () => {
+          let current = "";
+          sectionIds.forEach(id => {
+            const el = document.getElementById(id);
+            if (el && window.scrollY >= el.offsetTop - 200) current = id;
+          });
+          mapDots.forEach(dot => {
+            dot.classList.toggle("active", dot.dataset.section === current);
+          });
+        });
+
+        // --- Quest Completed Notification ---
+        let questShown = {};
+        const questObserver = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting && !questShown[e.target.id]) {
+              const messages = {
+                experience: "Quest Log reviewed. The Path continues...",
+                skills: "Gwent Deck inspected. Ready for a round?",
+                projects: "Contracts examined. Coin awaits.",
+                contact: "A new ally approaches...",
+              };
+              if (messages[e.target.id]) {
+                questShown[e.target.id] = true;
+                const notif = document.getElementById("quest-notification");
+                document.getElementById("quest-notification-text").textContent = messages[e.target.id];
+                notif.classList.add("show");
+                setTimeout(() => notif.classList.remove("show"), 2500);
+              }
             }
           });
-        }, observerOptions);
-
-        animatedSections.forEach((section) => {
-          observer.observe(section);
+        }, { threshold: 0.3 });
+        sectionIds.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) questObserver.observe(el);
         });
 
-        // --- Divider Animation on Scroll ---
-        const dividers = document.querySelectorAll(".divider");
-        const dividerObserverOptions = {
-          root: null,
-          rootMargin: "0px",
-          threshold: 0.5, // Trigger when 50% of the divider is visible
-        };
+        // --- Divider Animation ---
+        const dividerObs = new IntersectionObserver((entries) => {
+          entries.forEach(e => { e.isIntersecting ? e.target.classList.add("active") : e.target.classList.remove("active"); });
+        }, { threshold: 0.5 });
+        document.querySelectorAll(".divider").forEach(d => dividerObs.observe(d));
 
-        const dividerObserver = new IntersectionObserver(
-          (entries, observer) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-              } else {
-                entry.target.classList.remove("active"); // Remove class when not visible
-              }
-            });
-          },
-          dividerObserverOptions
-        );
-
-        dividers.forEach((divider) => {
-          dividerObserver.observe(divider);
+        // --- Gwent Card Flip on Double-Click ---
+        document.querySelectorAll(".gwent-card").forEach(card => {
+          card.addEventListener("dblclick", (e) => {
+            e.stopPropagation();
+            if (card.classList.contains("flipped")) {
+              card.style.transform = "";
+              card.classList.remove("flipped");
+              card.querySelector(".gwent-card-back")?.remove();
+            } else {
+              card.classList.add("flipped");
+              card.style.transform = "rotateY(180deg)";
+              card.style.transition = "transform 0.6s ease";
+              const back = document.createElement("div");
+              back.className = "gwent-card-back";
+              back.style.cssText = "position:absolute;inset:0;background:linear-gradient(135deg,#1a1209,#0d0a05);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transform:rotateY(180deg);border-radius:6px;z-index:10;";
+              back.innerHTML = '<svg width="50" height="50" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#c8a84e" stroke-width="1.5" fill="none" opacity="0.3"/><path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="#c8a84e" stroke-width="1" fill="rgba(200,168,78,0.05)"/></svg><span style="font-family:Cinzel,serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#a08030;">Double-click to flip back</span>';
+              card.appendChild(back);
+            }
+          });
         });
+
+        // --- Particle System (Ember / Snow / Fog) ---
+        const canvas = document.getElementById("ember-canvas");
+        const ctx = canvas.getContext("2d");
+        const header = document.getElementById("mainHeader");
+        let particleMode = "ember"; // ember, snow, fog
+        const modes = ["ember", "snow", "fog"];
+        let modeIndex = 0;
+        const modeEmoji = { ember: "\u{1F525}", snow: "\u{2744}\u{FE0F}", fog: "\u{1F32B}\u{FE0F}" };
+
+        const toggleBtn = document.getElementById("particle-toggle");
+        toggleBtn.addEventListener("click", () => {
+          modeIndex = (modeIndex + 1) % modes.length;
+          particleMode = modes[modeIndex];
+          toggleBtn.innerHTML = '<span class="particle-label">' + particleMode.charAt(0).toUpperCase() + particleMode.slice(1) + '</span>' + modeEmoji[particleMode];
+          particles.forEach(p => p.reset());
+        });
+
+        function resizeCanvas() {
+          canvas.width = header.offsetWidth;
+          canvas.height = header.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
+
+        class Particle {
+          constructor() { this.reset(); }
+          reset() {
+            if (particleMode === "ember") {
+              this.x = Math.random() * canvas.width;
+              this.y = canvas.height + Math.random() * 20;
+              this.size = Math.random() * 2.5 + 0.5;
+              this.speedY = -(Math.random() * 0.7 + 0.3);
+              this.speedX = (Math.random() - 0.5) * 0.3;
+              this.opacity = Math.random() * 0.6 + 0.2;
+              this.fadeRate = Math.random() * 0.003 + 0.001;
+              this.color = "#c8a84e";
+              this.glowColor = "rgba(200,168,78,0.6)";
+            } else if (particleMode === "snow") {
+              this.x = Math.random() * canvas.width;
+              this.y = -Math.random() * 20;
+              this.size = Math.random() * 2 + 0.5;
+              this.speedY = Math.random() * 0.5 + 0.2;
+              this.speedX = (Math.random() - 0.5) * 0.4;
+              this.opacity = Math.random() * 0.5 + 0.3;
+              this.fadeRate = Math.random() * 0.001 + 0.0005;
+              this.color = "#ccd8e8";
+              this.glowColor = "rgba(200,215,235,0.3)";
+            } else {
+              this.x = Math.random() * canvas.width;
+              this.y = Math.random() * canvas.height;
+              this.size = Math.random() * 30 + 15;
+              this.speedY = (Math.random() - 0.5) * 0.15;
+              this.speedX = Math.random() * 0.3 + 0.05;
+              this.opacity = Math.random() * 0.06 + 0.02;
+              this.fadeRate = 0;
+              this.color = "#b0a080";
+              this.glowColor = "transparent";
+            }
+            this.drift = Math.random() * Math.PI * 2;
+            this.driftSpeed = Math.random() * 0.02 + 0.005;
+          }
+          update() {
+            this.y += this.speedY;
+            this.drift += this.driftSpeed;
+            this.x += Math.sin(this.drift) * 0.3 + this.speedX;
+            if (particleMode !== "fog") this.opacity -= this.fadeRate;
+            if (particleMode === "ember" && (this.opacity <= 0 || this.y < -10)) this.reset();
+            if (particleMode === "snow" && (this.opacity <= 0 || this.y > canvas.height + 10)) this.reset();
+            if (particleMode === "fog" && (this.x > canvas.width + 50 || this.x < -50)) { this.x = -40; this.y = Math.random() * canvas.height; }
+          }
+          draw() {
+            ctx.save();
+            ctx.globalAlpha = this.opacity;
+            if (particleMode === "fog") {
+              const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
+              g.addColorStop(0, "rgba(176,160,128,0.08)");
+              g.addColorStop(1, "transparent");
+              ctx.fillStyle = g;
+              ctx.fillRect(this.x - this.size, this.y - this.size, this.size * 2, this.size * 2);
+            } else {
+              ctx.fillStyle = this.color;
+              ctx.shadowColor = this.glowColor;
+              ctx.shadowBlur = this.size * 3;
+              ctx.beginPath();
+              ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+              ctx.fill();
+            }
+            ctx.restore();
+          }
+        }
+
+        const particles = [];
+        for (let i = 0; i < 40; i++) {
+          const p = new Particle();
+          p.y = Math.random() * canvas.height;
+          particles.push(p);
+        }
+
+        function animateParticles() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach(p => { p.update(); p.draw(); });
+          requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
       });
     </script>
   </body>
