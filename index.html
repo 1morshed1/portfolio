@@ -562,6 +562,23 @@
         gap: 0.75rem;
         padding: 0.75rem;
         flex: 1;
+        align-items: stretch;
+      }
+      .gwent-board-cards > .flip-container,
+      .gwent-board-cards > .gwent-card {
+        flex: 1 1 calc(50% - 0.75rem);
+        min-width: 200px;
+        min-height: 320px;
+      }
+      .gwent-board-cards .flip-inner {
+        height: 100%;
+      }
+      .gwent-board-cards .flip-front {
+        height: 100%;
+      }
+      .gwent-board-cards .gwent-card {
+        height: 100%;
+        box-sizing: border-box;
       }
       .gwent-board-total {
         text-align: center;
@@ -1272,7 +1289,7 @@
             <div class="gwent-row-label">Melee</div>
             <div class="gwent-row-score">10</div>
             <div class="gwent-board-cards">
-              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-nilfgaard" style="flex:1; min-width:200px;">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-nilfgaard">
                 <div class="gwent-strength">
                   <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#c8a84e" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
                   <span>5</span>
@@ -1288,7 +1305,7 @@
                   <li class="skill-item">&#9830; SQL<div class="tooltip"><div class="tooltip-name tooltip-rarity-common">SQL</div><div class="tooltip-type">Common Tool</div><div class="tooltip-sep"></div><div class="tooltip-desc">"The universal tongue of data. SELECT * FROM knowledge."</div></div></li>
                 </ul>
               </div>
-              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-northern" style="flex:1; min-width:200px;">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-northern">
                 <div class="gwent-strength">
                   <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#4a6a9a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
                   <span>5</span>
@@ -1311,7 +1328,7 @@
             <div class="gwent-row-label">Ranged</div>
             <div class="gwent-row-score">10</div>
             <div class="gwent-board-cards">
-              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-skellige" style="flex:1; min-width:200px;">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-skellige">
                 <div class="gwent-strength">
                   <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#3a6b8a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
                   <span>7</span>
@@ -1326,7 +1343,7 @@
                   <li>&#9830; DVC</li><li>&#9830; GitHub Actions</li><li>&#9830; Terraform</li><li>&#9830; Prometheus / Grafana</li>
                 </ul>
               </div>
-              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-scoiatael" style="flex:1; min-width:200px;">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-scoiatael">
                 <div class="gwent-strength">
                   <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#2d6a3e" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
                   <span>3</span>
@@ -1347,24 +1364,36 @@
             <div class="gwent-row-label">Siege</div>
             <div class="gwent-row-score">9</div>
             <div class="gwent-board-cards">
-              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-monsters" style="flex:1; min-width:200px;">
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-monsters">
                 <div class="gwent-strength">
                   <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#8b1a1a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
-                  <span>9</span>
+                  <span>5</span>
                 </div>
                 <div class="gwent-row">Siege</div>
-                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">ML/AI & Agents</h3>
-                <div class="mutagen-slots"><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span></div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">ML Frameworks</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-green"></span></div>
                 <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
                   <li class="skill-item">&#9830; PyTorch<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">PyTorch</div><div class="tooltip-type">Legendary Relic</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Dynamic computation. The Witcher's silver sword of deep learning."</div></div></li>
                   <li class="skill-item">&#9830; TensorFlow<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">TensorFlow</div><div class="tooltip-type">Epic Weapon</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Google's steel. Heavy but battle-tested."</div></div></li>
                   <li class="skill-item">&#9830; Scikit-learn<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">Scikit-learn</div><div class="tooltip-type">Rare Tool</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Classical ML in a flask. Simple yet effective."</div></div></li>
                   <li class="skill-item">&#9830; Hugging Face<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">Hugging Face</div><div class="tooltip-type">Legendary Artifact</div><div class="tooltip-sep"></div><div class="tooltip-desc">"The model hub. Thousands of pre-trained beasts at your command."</div></div></li>
                   <li class="skill-item">&#9830; OpenCV / YOLO<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">OpenCV / YOLO</div><div class="tooltip-type">Epic Vision</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Cat eyes for machines. You Only Look Once — make it count."</div></div></li>
+                </ul>
+              </div>
+              <div class="p-6 shadow-xl card-hover gwent-card gwent-faction-monsters">
+                <div class="gwent-strength">
+                  <svg viewBox="0 0 36 36" fill="none"><polygon points="18,2 34,18 18,34 2,18" stroke="#8b1a1a" stroke-width="1.5" fill="rgba(10,8,4,0.85)"/></svg>
+                  <span>4</span>
+                </div>
+                <div class="gwent-row">Siege</div>
+                <h3 class="text-xl font-semibold mb-4 text-[#c8a84e] font-cinzel">Agentic AI</h3>
+                <div class="mutagen-slots"><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span><span class="mutagen mutagen-red"></span></div>
+                <ul class="list-none text-[#b0a080] text-lg space-y-2 mt-3">
                   <li class="skill-item">&#9830; LangChain / LangGraph<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">LangChain / LangGraph</div><div class="tooltip-type">Legendary Framework</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Chain spells together. Graph-based orchestration for agentic sorcery."</div></div></li>
                   <li class="skill-item">&#9830; CrewAI<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">CrewAI</div><div class="tooltip-type">Epic Summon</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Command a crew of AI agents. Each with their own role and purpose."</div></div></li>
                   <li class="skill-item">&#9830; Google ADK<div class="tooltip"><div class="tooltip-name tooltip-rarity-rare">Google ADK</div><div class="tooltip-type">Rare Kit</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Agent Development Kit. Google's recipe for agentic AI."</div></div></li>
                   <li class="skill-item">&#9830; OpenAI SDK<div class="tooltip"><div class="tooltip-name tooltip-rarity-legendary">OpenAI SDK</div><div class="tooltip-type">Legendary Gateway</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Access to GPT. The most powerful conjuration in the Continent."</div></div></li>
+                  <li class="skill-item">&#9830; MCP Protocol<div class="tooltip"><div class="tooltip-name tooltip-rarity-epic">MCP</div><div class="tooltip-type">Epic Protocol</div><div class="tooltip-sep"></div><div class="tooltip-desc">"Model Context Protocol. The Witcher's contract with the tools."</div></div></li>
                 </ul>
               </div>
             </div>
