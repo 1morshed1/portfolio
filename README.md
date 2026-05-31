@@ -15,7 +15,7 @@ A personal portfolio website reimagined as a Witcher 3: Wild Hunt experience. Da
 - **Ember Particle System** — Toggle between ember, snow, and fog weather effects
 - **Map Waypoint Navigation** — Dot-and-line nav with active section ping animation
 - **Inventory Tooltips** — Hover skills to see W3-style item tooltips with rarity colors (Legendary/Epic/Rare/Common) and flavor text
-- **Gwent Card Flip** — Double-click skill cards to flip and reveal card back
+- **Click-to-Flip Cards** — All skill and project cards start face-down. Gwent cards show green backs with diamond pattern and faction emblem. Contract cards show yellowed parchment with wax seals. Click to flip and reveal content
 - **Quest Completion Notifications** — Slide-in popup when scrolling to each section
 - **Meditation Clock** — Rotating day/night cycle SVG in footer
 
