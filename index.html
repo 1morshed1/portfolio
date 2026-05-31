@@ -702,10 +702,12 @@
         overflow-y: auto;
       }
 
-      /* Gwent card back (face-down state) */
+      /* Gwent card back (face-down state) — green like actual Gwent */
       .gwent-card-back {
-        background: linear-gradient(135deg, #1a1209 0%, #0d0a05 100%);
-        border: 2px solid var(--w3-gold-dim);
+        background:
+          url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='rgba(80,120,70,0.12)' stroke-width='0.5'/%3E%3C/svg%3E"),
+          linear-gradient(135deg, #1a3a20 0%, #0f2a14 40%, #0a1f0e 70%, #071a0a 100%);
+        border: 2px solid #2a5a30;
         border-radius: 8px;
         display: flex;
         flex-direction: column;
@@ -716,13 +718,22 @@
         height: 100%;
         box-sizing: border-box;
         position: relative;
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.4);
       }
       .gwent-card-back::before {
         content: "";
         position: absolute;
-        inset: 4px;
-        border: 1px solid rgba(200,168,78,0.15);
-        border-radius: 6px;
+        inset: 5px;
+        border: 1px solid rgba(80,140,70,0.2);
+        border-radius: 5px;
+        pointer-events: none;
+      }
+      .gwent-card-back::after {
+        content: "";
+        position: absolute;
+        inset: 8px;
+        border: 1px solid rgba(80,140,70,0.1);
+        border-radius: 4px;
         pointer-events: none;
       }
       .gwent-card-back-title {
@@ -731,16 +742,16 @@
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--w3-gold);
-        text-shadow: 0 0 10px var(--w3-glow-gold);
+        color: #8abf7a;
+        text-shadow: 0 0 10px rgba(100,160,80,0.4);
         text-align: center;
       }
       .gwent-card-back-hint {
         font-family: "EB Garamond", serif;
         font-size: 0.75rem;
-        color: var(--w3-gold-dim);
+        color: #5a8a50;
         font-style: italic;
-        opacity: 0.6;
+        opacity: 0.7;
       }
       .gwent-card-back-faction {
         width: 100%;
@@ -750,11 +761,13 @@
         left: 0;
       }
 
-      /* Contract card back (face-down state) */
+      /* Contract card back (face-down) — dirty torn parchment */
       .contract-card-back {
-        background: linear-gradient(170deg, #2a2010 0%, #1e180e 40%, #1a1209 100%);
-        border: 1px solid var(--w3-border);
-        border-radius: 8px;
+        background:
+          url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"),
+          linear-gradient(170deg, #d4c5a0 0%, #c4b490 20%, #b8a87a 50%, #a89870 80%, #c0b088 100%);
+        border: 1px solid #9a8a60;
+        border-radius: 4px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -764,13 +777,20 @@
         height: 100%;
         box-sizing: border-box;
         position: relative;
-        box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+        box-shadow: 4px 4px 12px rgba(0,0,0,0.5), inset 0 0 40px rgba(80,60,20,0.15);
       }
       .contract-card-back::before {
         content: "";
         position: absolute;
-        inset: 6px;
-        border: 1px solid rgba(200,168,78,0.1);
+        top: 0; left: 0; right: 0; height: 8px;
+        background: linear-gradient(to bottom, rgba(100,80,40,0.15), transparent);
+        pointer-events: none;
+      }
+      .contract-card-back::after {
+        content: "";
+        position: absolute;
+        bottom: 0; left: 0; right: 0; height: 8px;
+        background: linear-gradient(to top, rgba(100,80,40,0.2), transparent);
         pointer-events: none;
       }
       .contract-card-back-title {
@@ -779,27 +799,31 @@
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--w3-text-heading);
+        color: #3a2a10;
         text-align: center;
+        text-shadow: none;
       }
       .contract-card-back-diff {
         font-family: "Cinzel", serif;
         font-size: 0.6rem;
         letter-spacing: 0.25em;
         text-transform: uppercase;
-        color: var(--w3-gold-dim);
+        color: #6a5a30;
       }
       .contract-card-back-hint {
         font-family: "EB Garamond", serif;
         font-size: 0.75rem;
-        color: var(--w3-gold-dim);
+        color: #7a6a40;
         font-style: italic;
-        opacity: 0.5;
+        opacity: 0.7;
       }
-      .flip-container:not(.flipped):hover .gwent-card-back,
+      .flip-container:not(.flipped):hover .gwent-card-back {
+        border-color: #3a8a40;
+        box-shadow: 0 0 20px rgba(60,140,60,0.3), inset 0 0 30px rgba(0,0,0,0.4);
+      }
       .flip-container:not(.flipped):hover .contract-card-back {
-        border-color: var(--w3-gold);
-        box-shadow: 0 0 20px var(--w3-glow-gold);
+        border-color: #b09a60;
+        box-shadow: 0 0 15px rgba(180,160,100,0.25), 4px 4px 12px rgba(0,0,0,0.5);
       }
 
       /* Mutagen slots */
@@ -1721,10 +1745,11 @@
           const backDiv = document.createElement("div");
           backDiv.className = "flip-back";
           backDiv.innerHTML = `<div class="gwent-card-back">
-            <div class="gwent-card-back-faction" style="background:linear-gradient(to right, transparent, ${factionSymbols[faction]}, transparent);"></div>
-            <svg width="60" height="60" viewBox="0 0 100 100" fill="none" opacity="0.35">
-              <circle cx="50" cy="50" r="40" stroke="${factionSymbols[faction]}" stroke-width="1.5" fill="none"/>
-              <path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="${factionSymbols[faction]}" stroke-width="1" fill="rgba(200,168,78,0.03)"/>
+            <div class="gwent-card-back-faction" style="background:linear-gradient(to right, transparent, #3a8a40, transparent);"></div>
+            <svg width="60" height="60" viewBox="0 0 100 100" fill="none" opacity="0.3">
+              <circle cx="50" cy="50" r="42" stroke="#4a9a50" stroke-width="1.5" fill="none"/>
+              <circle cx="50" cy="50" r="36" stroke="#3a7a40" stroke-width="0.8" fill="none"/>
+              <path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="#5aaa60" stroke-width="1.2" fill="rgba(60,140,60,0.05)"/>
             </svg>
             <div class="gwent-card-back-title">${title}</div>
             <div class="gwent-card-back-hint">Click to reveal</div>
@@ -1757,8 +1782,8 @@
           const backDiv = document.createElement("div");
           backDiv.className = "flip-back";
           backDiv.innerHTML = `<div class="contract-card-back">
-            <div class="wax-seal" style="position:static;">
-              <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+            <div style="width:50px;height:50px;border-radius:50%;background:radial-gradient(circle,#a52525 0%,#7a1515 60%,#5a0f0f 100%);box-shadow:0 3px 8px rgba(0,0,0,0.5),inset 0 1px 3px rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" style="width:24px;height:24px;"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.5"/></svg>
             </div>
             <div class="contract-card-back-title">${title}</div>
             <div class="contract-card-back-diff">${diff}</div>
