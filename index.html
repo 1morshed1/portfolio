@@ -435,13 +435,10 @@
         background: linear-gradient(170deg, #2a2010 0%, #1e180e 40%, #1a1209 100%);
         border: 1px solid var(--w3-border);
         position: relative;
-        transform: rotate(-0.5deg);
         transition: all 0.3s ease;
         box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
       }
-      .contract-card:nth-child(2) { transform: rotate(0.7deg); }
-      .contract-card:hover {
-        transform: rotate(0deg) translateY(-5px) !important;
+      .flip-container.flipped .contract-card:hover {
         box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px var(--w3-glow-gold);
         border-color: var(--w3-gold-dim);
       }
@@ -680,27 +677,33 @@
         transition: width 1.5s ease-out;
       }
 
-      /* Gwent card flip */
-      .gwent-flip-container {
-        perspective: 800px;
-        min-width: 200px;
-        flex: 1;
+      /* Card flip system */
+      .flip-container {
+        perspective: 1000px;
+        cursor: pointer;
       }
-      .gwent-flip-inner {
+      .flip-inner {
         position: relative;
-        transition: transform 0.6s ease;
+        transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
         transform-style: preserve-3d;
       }
-      .gwent-flip-container:hover .gwent-flip-inner {
+      .flip-container.flipped .flip-inner {
         transform: rotateY(180deg);
       }
-      .gwent-flip-front, .gwent-flip-back {
+      .flip-front, .flip-back {
         backface-visibility: hidden;
       }
-      .gwent-flip-back {
+      .flip-front {
+        transform: rotateY(180deg) !important;
+      }
+      .flip-back {
         position: absolute;
         inset: 0;
-        transform: rotateY(180deg);
+        overflow-y: auto;
+      }
+
+      /* Gwent card back (face-down state) */
+      .gwent-card-back {
         background: linear-gradient(135deg, #1a1209 0%, #0d0a05 100%);
         border: 2px solid var(--w3-gold-dim);
         border-radius: 8px;
@@ -708,18 +711,95 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 12px;
-        padding: 1rem;
+        gap: 16px;
+        padding: 2rem 1rem;
+        height: 100%;
+        box-sizing: border-box;
+        position: relative;
       }
-      .gwent-flip-back svg {
-        opacity: 0.4;
+      .gwent-card-back::before {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border: 1px solid rgba(200,168,78,0.15);
+        border-radius: 6px;
+        pointer-events: none;
       }
-      .gwent-flip-back-label {
+      .gwent-card-back-title {
         font-family: "Cinzel", serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--w3-gold);
+        text-shadow: 0 0 10px var(--w3-glow-gold);
+        text-align: center;
+      }
+      .gwent-card-back-hint {
+        font-family: "EB Garamond", serif;
+        font-size: 0.75rem;
+        color: var(--w3-gold-dim);
+        font-style: italic;
+        opacity: 0.6;
+      }
+      .gwent-card-back-faction {
+        width: 100%;
+        height: 3px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* Contract card back (face-down state) */
+      .contract-card-back {
+        background: linear-gradient(170deg, #2a2010 0%, #1e180e 40%, #1a1209 100%);
+        border: 1px solid var(--w3-border);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 2rem 1.5rem;
+        height: 100%;
+        box-sizing: border-box;
+        position: relative;
+        box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+      }
+      .contract-card-back::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 1px solid rgba(200,168,78,0.1);
+        pointer-events: none;
+      }
+      .contract-card-back-title {
+        font-family: "Cinzel", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--w3-text-heading);
+        text-align: center;
+      }
+      .contract-card-back-diff {
+        font-family: "Cinzel", serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.25em;
         text-transform: uppercase;
         color: var(--w3-gold-dim);
+      }
+      .contract-card-back-hint {
+        font-family: "EB Garamond", serif;
+        font-size: 0.75rem;
+        color: var(--w3-gold-dim);
+        font-style: italic;
+        opacity: 0.5;
+      }
+      .flip-container:not(.flipped):hover .gwent-card-back,
+      .flip-container:not(.flipped):hover .contract-card-back {
+        border-color: var(--w3-gold);
+        box-shadow: 0 0 20px var(--w3-glow-gold);
       }
 
       /* Mutagen slots */
@@ -1617,24 +1697,83 @@
         }, { threshold: 0.5 });
         document.querySelectorAll(".divider").forEach(d => dividerObs.observe(d));
 
-        // --- Gwent Card Flip on Double-Click ---
+        // --- Card Flip System (Gwent + Contracts) ---
+        const factionSymbols = {
+          nilfgaard: '#c8a84e', monsters: '#8b1a1a', skellige: '#3a6b8a',
+          scoiatael: '#2d6a3e', northern: '#4a6a9a'
+        };
+
         document.querySelectorAll(".gwent-card").forEach(card => {
-          card.addEventListener("dblclick", (e) => {
-            e.stopPropagation();
-            if (card.classList.contains("flipped")) {
-              card.style.transform = "";
-              card.classList.remove("flipped");
-              card.querySelector(".gwent-card-back")?.remove();
-            } else {
-              card.classList.add("flipped");
-              card.style.transform = "rotateY(180deg)";
-              card.style.transition = "transform 0.6s ease";
-              const back = document.createElement("div");
-              back.className = "gwent-card-back";
-              back.style.cssText = "position:absolute;inset:0;background:linear-gradient(135deg,#1a1209,#0d0a05);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transform:rotateY(180deg);border-radius:6px;z-index:10;";
-              back.innerHTML = '<svg width="50" height="50" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="40" stroke="#c8a84e" stroke-width="1.5" fill="none" opacity="0.3"/><path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="#c8a84e" stroke-width="1" fill="rgba(200,168,78,0.05)"/></svg><span style="font-family:Cinzel,serif;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#a08030;">Double-click to flip back</span>';
-              card.appendChild(back);
-            }
+          const title = card.querySelector("h3")?.textContent?.trim() || "Card";
+          const parent = card.parentElement;
+          let faction = "nilfgaard";
+          for (const f of Object.keys(factionSymbols)) {
+            if (card.classList.contains("gwent-faction-" + f)) { faction = f; break; }
+          }
+          const container = document.createElement("div");
+          container.className = "flip-container";
+          container.style.cssText = card.style.cssText;
+          card.style.cssText = "";
+
+          const inner = document.createElement("div");
+          inner.className = "flip-inner";
+
+          const backDiv = document.createElement("div");
+          backDiv.className = "flip-back";
+          backDiv.innerHTML = `<div class="gwent-card-back">
+            <div class="gwent-card-back-faction" style="background:linear-gradient(to right, transparent, ${factionSymbols[faction]}, transparent);"></div>
+            <svg width="60" height="60" viewBox="0 0 100 100" fill="none" opacity="0.35">
+              <circle cx="50" cy="50" r="40" stroke="${factionSymbols[faction]}" stroke-width="1.5" fill="none"/>
+              <path d="M50 15 L55 30 L65 25 L60 38 L75 40 L62 48 L70 60 L57 55 L55 70 L50 58 L45 70 L43 55 L30 60 L38 48 L25 40 L40 38 L35 25 L45 30 Z" stroke="${factionSymbols[faction]}" stroke-width="1" fill="rgba(200,168,78,0.03)"/>
+            </svg>
+            <div class="gwent-card-back-title">${title}</div>
+            <div class="gwent-card-back-hint">Click to reveal</div>
+          </div>`;
+
+          card.classList.add("flip-front");
+          parent.insertBefore(container, card);
+          container.appendChild(inner);
+          inner.appendChild(backDiv);
+          inner.appendChild(card);
+
+          container.addEventListener("click", (e) => {
+            if (e.target.closest("a")) return;
+            container.classList.toggle("flipped");
+          });
+        });
+
+        document.querySelectorAll(".contract-card").forEach(card => {
+          const title = card.querySelector("h3")?.textContent?.trim() || "Contract";
+          const diffEl = card.querySelector("[style*='letter-spacing:0.25em']");
+          const diff = diffEl?.textContent?.trim() || "";
+          const parent = card.parentElement;
+
+          const container = document.createElement("div");
+          container.className = "flip-container";
+
+          const inner = document.createElement("div");
+          inner.className = "flip-inner";
+
+          const backDiv = document.createElement("div");
+          backDiv.className = "flip-back";
+          backDiv.innerHTML = `<div class="contract-card-back">
+            <div class="wax-seal" style="position:static;">
+              <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;"><path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9Z" fill="#d4c5a0" opacity="0.6"/></svg>
+            </div>
+            <div class="contract-card-back-title">${title}</div>
+            <div class="contract-card-back-diff">${diff}</div>
+            <div class="contract-card-back-hint">Click to read contract</div>
+          </div>`;
+
+          card.classList.add("flip-front");
+          parent.insertBefore(container, card);
+          container.appendChild(inner);
+          inner.appendChild(backDiv);
+          inner.appendChild(card);
+
+          container.addEventListener("click", (e) => {
+            if (e.target.closest("a")) return;
+            container.classList.toggle("flipped");
           });
         });
 
