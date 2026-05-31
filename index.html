@@ -431,16 +431,45 @@
         padding: 2px 16px;
         border: 1px solid var(--w3-border);
       }
+      .contract-board .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+      .contract-board .flip-container {
+        min-height: 340px;
+      }
+      .contract-board .flip-inner {
+        height: 100%;
+      }
+      .contract-board .flip-front {
+        height: 100%;
+      }
       .contract-card {
         background: linear-gradient(170deg, #2a2010 0%, #1e180e 40%, #1a1209 100%);
         border: 1px solid var(--w3-border);
         position: relative;
         transition: all 0.3s ease;
         box-shadow: 4px 4px 12px rgba(0,0,0,0.5);
+        height: 100%;
+        box-sizing: border-box;
       }
       .flip-container.flipped .contract-card:hover {
         box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 15px var(--w3-glow-gold);
         border-color: var(--w3-gold-dim);
+      }
+      /* Random tilts for notice board feel */
+      .contract-board .flip-container:nth-child(1) { transform: rotate(-1.2deg); }
+      .contract-board .flip-container:nth-child(2) { transform: rotate(0.8deg); }
+      .contract-board .flip-container:nth-child(3) { transform: rotate(1.5deg); }
+      .contract-board .flip-container:nth-child(4) { transform: rotate(-0.6deg); }
+      .contract-board .flip-container:nth-child(5) { transform: rotate(-1.8deg); }
+      .contract-board .flip-container:nth-child(6) { transform: rotate(1.1deg); }
+      .contract-board .flip-container:nth-child(7) { transform: rotate(0.5deg); }
+      .contract-board .flip-container:nth-child(8) { transform: rotate(-1.0deg); }
+      .contract-board .flip-container:hover {
+        transform: rotate(0deg) scale(1.03) !important;
+        z-index: 5;
       }
       .contract-card::before {
         content: "";
